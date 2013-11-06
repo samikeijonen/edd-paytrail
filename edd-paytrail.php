@@ -6,6 +6,8 @@
 * Version: 1.0
 * Author: Sami Keijonen
 * Author URI: https://foxnet-themes.fi
+* Text Domain: edd-paytrail
+* Domain Path: /languages
 *
 * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
 * General Public License version 2, as published by the Free Software Foundation. You may NOT assume
@@ -21,7 +23,19 @@
 * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 
-class EDD_PAYTRAIL {
+/* Exit if accessed directly. */
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+final class EDD_PAYTRAIL {
+
+	/**
+	 * Holds the instances of this class.
+	 *
+	 * @since  0.1.0
+	 * @access private
+	 * @var    object
+	 */
+	private static $instance;
 
 	/**
 	* PHP5 constructor method.
@@ -81,7 +95,11 @@ class EDD_PAYTRAIL {
 	public function i18n() {
 
 		/* Load the translation of the plugin. */
-		load_plugin_textdomain( 'edd-paytrail', false, 'edd-paytrail/languages' );
+		$domain = 'edd-paytrail';
+		$locale = apply_filters( 'edd_paytrail_locale', get_locale(), $domain );
+		
+		load_textdomain( $domain, trailingslashit( WP_LANG_DIR ) . $domain . '/' . $domain . '-' . $locale . '.mo' );
+		load_plugin_textdomain( 'edd-paytrail', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
 	}
 
@@ -95,7 +113,6 @@ class EDD_PAYTRAIL {
 		/* Load necessary files. */
 		require_once( EDD_PAYTRAIL_INCLUDES . 'functions.php' );
 		require_once( EDD_PAYTRAIL_INCLUDES . 'settings.php' );
-		require_once( EDD_PAYTRAIL_INCLUDES . 'form-template.php' );
 		
 		/* Load the EDD license handler only if not already loaded. Must be placed in the main plugin file */
 		if( ! class_exists( 'EDD_License' ) )
@@ -105,9 +122,24 @@ class EDD_PAYTRAIL {
 		$license = new EDD_License( __FILE__, 'Paytrail Payment Gateway', '1.0', 'Sami Keijonen' );
 		
 	}
+	
+	/**
+	 * Returns the instance.
+	 *
+	 * @since  1.0
+	 * @access public
+	 * @return object
+	 */
+	public static function get_instance() {
+
+		if ( !self::$instance )
+			self::$instance = new self;
+
+		return self::$instance;
+	}
 
 }
 
-new EDD_PAYTRAIL();
+EDD_PAYTRAIL::get_instance();
 
 ?>

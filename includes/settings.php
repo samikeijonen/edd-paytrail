@@ -1,5 +1,8 @@
 <?php
 
+/* Exit if accessed directly. */
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
  * Register the paytrail.fi gateway settings
  *
