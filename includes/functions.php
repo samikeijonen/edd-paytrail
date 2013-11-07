@@ -28,7 +28,7 @@ function edd_paytrail_add_banks() {
 	echo ob_get_clean();
 	
 }
-add_action( 'edd_paytrail_cc_form', '__return_false' );
+//add_action( 'edd_paytrail_cc_form', '__return_false' );
 
 /**
  * Register Paytrail payment gateway
@@ -183,10 +183,10 @@ function edd_paytrail_confirm_payment() {
 		if( $module->confirmPayment( $_GET['ORDER_NUMBER'], $_GET['TIMESTAMP'], $_GET['PAID'], $_GET['METHOD'], $_GET['RETURN_AUTHCODE'] ) ) {
 			
 			/* Update payment status. */
-			edd_update_payment_status( esc_attr( $_GET['confirm_payment_id'] ), 'publish' );
+			edd_update_payment_status( absint( $_GET['confirm_payment_id'] ), 'publish' );
 			
 			/* Add transaction ID to payment notes. */
-			edd_insert_payment_note( esc_attr( $_GET['confirm_payment_id'] ), sprintf( __( 'Paytrail order number: %s', 'edd-paytrail' ), esc_attr( $_GET['ORDER_NUMBER'] ) ) );
+			edd_insert_payment_note( absint( $_GET['confirm_payment_id'] ), sprintf( __( 'Paytrail order number: %s', 'edd-paytrail' ), absint( $_GET['ORDER_NUMBER'] ) ) );
 			
 		}
 		else {
