@@ -10,6 +10,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @since 1.0
  */
 function edd_paytrail_address_fields() {
+
+	/* Return if paytrail is not chosen payment gateway. */
+	if ( 'paytrail' !== edd_get_chosen_gateway() ) {
+		return;
+	}
  
 	$logged_in = is_user_logged_in();
 
@@ -70,11 +75,6 @@ function edd_paytrail_address_fields() {
 				?>
 			</select>
 		</p>
-		<p id="edd-card-company-wrap">
-			<label for="card_company" class="edd-label"><?php _e( 'Company', 'edd-paytrail' ); ?></label>
-			<span class="edd-description"><?php _e( 'The name of your company.', 'edd-paytrail' ); ?></span>
-			<input type="text" id="card_company" name="card_company" class="card-company edd-input required" placeholder="<?php _e( 'Company', 'edd-paytrail' ); ?>" value="" />
-		</p>
 		<?php do_action( 'edd_cc_billing_bottom' ); ?>
 	</fieldset>
 	<?php
@@ -86,7 +86,7 @@ add_action( 'edd_purchase_form_after_cc_form', 'edd_paytrail_address_fields', 99
 add_action( 'edd_paytrail_cc_form', '__return_false' ); // Remove credit card info.
 
 /**
- * Register Paytrail payment gateway
+ * Register Paytrail payment gateway.
  *
  * @access      public
  * @since       1.0
@@ -101,6 +101,90 @@ function edd_paytrail_register_gateway( $gateways ) {
 	
 }
 add_filter( 'edd_payment_gateways', 'edd_paytrail_register_gateway' );
+
+/**
+ * Registers the new options in Extensions.
+ * *
+ * @access      private
+ * @since       1.0
+ * @param 		$settings array the existing plugin settings
+ * @return      array
+*/
+function edd_paytrail_settings( $settings ) {
+
+	$license_settings = array(
+		array(
+			'id' => 'edd_paytrail_header',
+			'name' => '<strong>' . __( 'Paytrail', 'edd-paytrail' ) . '</strong>',
+			'desc' => '',
+			'type' => 'header',
+			'size' => 'regular'
+		),
+		array(
+			'id' => 'edd_paytrail_hide_image',
+			'name' => __( 'Hide Paytrail image', 'edd-paytrail' ),
+			'desc' => __( 'Check this if you want to hide Paytrail image on checkout page.', 'edd-paytrail' ),
+			'type' => 'checkbox'
+		)
+	);
+
+	return array_merge( $settings, $license_settings );
+
+}
+add_filter( 'edd_settings_extensions', 'edd_paytrail_settings' );
+
+/**
+ * Add Paytrail image to checkout page.
+ *
+ * @access      public
+ * @since       1.0
+ * @return      string
+ */
+function edd_paytrail_add_image( $gateways ) {
+	
+	/* Return if paytrail is not chosen payment gateway. */
+	if ( 'paytrail' !== edd_get_chosen_gateway() ) {
+		return;
+	}
+	
+	global $edd_options;
+	
+	/* Return if hide image is set in Settings >> Extensions. */
+	if ( isset( $edd_options['edd_paytrail_hide_image'] ) ) {
+		return;
+	}
+	
+	/* Use test credentials if test mode is on. */
+	if( edd_is_test_mode() ) {
+		$paytrail_merchant_id = $edd_options['paytrail_test_merchant_id'];
+		$paytrail_merchant_secret = $edd_options['paytrail_test_merchant_secret'];
+	} else {
+		$paytrail_merchant_id = $edd_options['paytrail_merchant_id'];
+		$paytrail_merchant_secret = $edd_options['paytrail_merchant_secret'];
+	}
+	
+	/* Combine merchant id and merchant secret. @link: http://docs.paytrail.com/files/method-images-api-fi.pdf. */
+	$auth_code = $paytrail_merchant_id . $paytrail_merchant_secret;
+	
+	/* Calculate MD5 and take first 16 characters. */
+	$auth_code = substr( md5( $auth_code ), 0, 16 );
+	
+	/* Image defaults arguments. */
+	$image_args = apply_filters( 'edd_paytrail_image_args', array(
+		'type' => 'horizontal',
+		'cols' => 10,
+		'text' => 1
+		)
+	);
+	?>
+	<fieldset id="edd_paytrail_image">
+		<span><legend><?php echo apply_filters( 'edd_paytrail_checkout_before_image_text', __( 'You can use Paytrail account or finnish banks.', 'edd-paytrail' ) ); ?></legend></span>
+		<?php echo '<p><img src="https://img.verkkomaksut.fi/index.svm?id=' . $paytrail_merchant_id . '&type=' . $image_args['type'] . '&cols=' . $image_args['cols'] . '&text=' . $image_args['text'] . '&auth=' . $auth_code . '" alt="' . _x( 'Paytrail', 'Alt tag for Paytrail image', 'edd-paytrail' ) . '" title="' . _x( 'Paytrail', 'Title tag for Paytrail image', 'edd-paytrail' ) . '"/></p>'; ?>
+	</fieldset>
+	<?php
+	
+}
+add_action( 'edd_purchase_form_top', 'edd_paytrail_add_image' );
 
 /**
  * Process Paytrail submission.
@@ -125,7 +209,7 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 	/* Load the paytrail module payment file. */
 	require_once( EDD_PAYTRAIL_INCLUDES . 'Verkkomaksut_Module_Rest.php' );
 	
-	/* error validation */
+	/* Error validation */
 	
 	if( !isset( $_POST['card_address'] ) || $_POST['card_address'] == '' ) {
 		edd_set_error( 'empty_card', __( 'You must enter the address', 'edd-paytrail' ) );
@@ -145,7 +229,8 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 
 	/* Get errors. */
 	$errors = edd_get_errors();
-
+	
+	/* If there is no errors, proceed to payment. */
 	if ( !$errors ) {
 	
 		/* Set payment data. */
@@ -218,9 +303,6 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
         // Country
         $country = $card_info['card_country'];
 		
-        // Company
-        $company = $card_info['card_company'];
-		
 		/* Create contact for payment. This is sent to Paytrail account. */
 		$contact = new Verkkomaksut_Module_Rest_Contact(
 			$name1,     // firstname
@@ -232,7 +314,7 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 			$country,   // country (ISO-3166)
 			"",         // phone
 			"",         // cell phone
-			$company    // company name
+			""          // company name
 		);
 
 		/* Payment creation. */
@@ -310,14 +392,14 @@ function edd_paytrail_confirm_payment() {
 		$paytrail_merchant_secret = $edd_options['paytrail_merchant_secret'];
 	}
 	
-	/* Load the paytrail module payment file. */
-	require_once( EDD_PAYTRAIL_INCLUDES . 'Verkkomaksut_Module_Rest.php' );
-	
-	/* Check id from payment. */
-	$module = new Verkkomaksut_Module_Rest( $paytrail_merchant_id, $paytrail_merchant_secret );
-	
 	/* Check that we are on success page and payment id is set. After that check for valid payment. */
 	if ( isset( $_GET['confirm_payment_id'] ) && is_page( $edd_options['success_page'] ) ) {
+	
+		/* Load the paytrail module payment file. */
+		require_once( EDD_PAYTRAIL_INCLUDES . 'Verkkomaksut_Module_Rest.php' );
+	
+		/* Check id from payment. */
+		$module = new Verkkomaksut_Module_Rest( $paytrail_merchant_id, $paytrail_merchant_secret );
 	
 		if( $module->confirmPayment( $_GET['ORDER_NUMBER'], $_GET['TIMESTAMP'], $_GET['PAID'], $_GET['METHOD'], $_GET['RETURN_AUTHCODE'] ) ) {
 			
@@ -325,7 +407,7 @@ function edd_paytrail_confirm_payment() {
 			edd_update_payment_status( absint( $_GET['confirm_payment_id'] ), 'publish' );
 			
 			/* Add transaction ID to payment notes. */
-			edd_insert_payment_note( absint( $_GET['confirm_payment_id'] ), sprintf( __( 'Paytrail order number: %s', 'edd-paytrail' ), absint( $_GET['ORDER_NUMBER'] ) ) );
+			edd_insert_payment_note( absint( $_GET['confirm_payment_id'] ), sprintf( __( 'Paytrail order number: %s', 'edd-paytrail' ), esc_attr( $_GET['ORDER_NUMBER'] ) ) );
 			
 		}
 		else {
