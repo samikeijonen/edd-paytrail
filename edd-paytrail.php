@@ -119,7 +119,7 @@ final class EDD_PAYTRAIL {
 			include( dirname( __FILE__ ) . '/includes/EDD_License_Handler.php' );
 
 		/* Instantiate the licensing / updater. Must be placed in the main plugin file */
-		$license = new EDD_License( __FILE__, 'Paytrail Payment Gateway', '1.0', 'Sami Keijonen' );
+		$license = new EDD_License( __FILE__, 'Paytrail Payment Gateway', '1.0', 'Sami Keijonen', null, 'http://localhost/foxnet-themes-shop' );
 		
 	}
 	
