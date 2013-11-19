@@ -4,6 +4,23 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
+ * Register Paytrail payment gateway.
+ *
+ * @access      public
+ * @since       1.0
+ * @return      array
+ */
+function edd_paytrail_register_gateway( $gateways ) {
+	
+	/* Format: ID => Name. */
+	$gateways['paytrail'] = array( 'admin_label' => __( 'Paytrail', 'edd-paytrail' ), 'checkout_label' => __( 'Paytrail', 'edd-paytrail' ) );
+	
+	return $gateways;
+	
+}
+add_filter( 'edd_payment_gateways', 'edd_paytrail_register_gateway' );
+
+/**
  * Add own address form.
  *
  * @access private
@@ -11,8 +28,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function edd_paytrail_address_fields() {
 
-	/* Return if paytrail is not chosen payment gateway. */
-	if ( 'paytrail' !== edd_get_chosen_gateway() ) {
+	/* Return if paytrail is not chosen payment gateway or site owner doesn't want to use address fields. */
+	if ( 'paytrail' !== edd_get_chosen_gateway() || ! edd_paytrail_show_extra_address_fields() ) {
 		return;
 	}
  
@@ -86,107 +103,6 @@ add_action( 'edd_purchase_form_after_cc_form', 'edd_paytrail_address_fields', 99
 add_action( 'edd_paytrail_cc_form', '__return_false' ); // Remove credit card info.
 
 /**
- * Register Paytrail payment gateway.
- *
- * @access      public
- * @since       1.0
- * @return      array
- */
-function edd_paytrail_register_gateway( $gateways ) {
-	
-	/* Format: ID => Name. */
-	$gateways['paytrail'] = array( 'admin_label' => __( 'Paytrail', 'edd-paytrail' ), 'checkout_label' => __( 'Paytrail', 'edd-paytrail' ) );
-	
-	return $gateways;
-	
-}
-add_filter( 'edd_payment_gateways', 'edd_paytrail_register_gateway' );
-
-/**
- * Registers the new options in Extensions.
- * *
- * @access      private
- * @since       1.0
- * @param 		$settings array the existing plugin settings
- * @return      array
-*/
-function edd_paytrail_settings( $settings ) {
-
-	$license_settings = array(
-		array(
-			'id' => 'edd_paytrail_header',
-			'name' => '<strong>' . __( 'Paytrail', 'edd-paytrail' ) . '</strong>',
-			'desc' => '',
-			'type' => 'header',
-			'size' => 'regular'
-		),
-		array(
-			'id' => 'edd_paytrail_hide_image',
-			'name' => __( 'Hide Paytrail image', 'edd-paytrail' ),
-			'desc' => __( 'Check this if you want to hide Paytrail image on checkout page.', 'edd-paytrail' ),
-			'type' => 'checkbox'
-		)
-	);
-
-	return array_merge( $settings, $license_settings );
-
-}
-add_filter( 'edd_settings_extensions', 'edd_paytrail_settings' );
-
-/**
- * Add Paytrail image to checkout page.
- *
- * @access      public
- * @since       1.0
- * @return      string
- */
-function edd_paytrail_add_image( $gateways ) {
-	
-	/* Return if paytrail is not chosen payment gateway. */
-	if ( 'paytrail' !== edd_get_chosen_gateway() ) {
-		return;
-	}
-	
-	global $edd_options;
-	
-	/* Return if hide image is set in Settings >> Extensions. */
-	if ( isset( $edd_options['edd_paytrail_hide_image'] ) ) {
-		return;
-	}
-	
-	/* Use test credentials if test mode is on. */
-	if( edd_is_test_mode() ) {
-		$paytrail_merchant_id = $edd_options['paytrail_test_merchant_id'];
-		$paytrail_merchant_secret = $edd_options['paytrail_test_merchant_secret'];
-	} else {
-		$paytrail_merchant_id = $edd_options['paytrail_merchant_id'];
-		$paytrail_merchant_secret = $edd_options['paytrail_merchant_secret'];
-	}
-	
-	/* Combine merchant id and merchant secret. @link: http://docs.paytrail.com/files/method-images-api-fi.pdf. */
-	$auth_code = $paytrail_merchant_id . $paytrail_merchant_secret;
-	
-	/* Calculate MD5 and take first 16 characters. */
-	$auth_code = substr( md5( $auth_code ), 0, 16 );
-	
-	/* Image defaults arguments. */
-	$image_args = apply_filters( 'edd_paytrail_image_args', array(
-		'type' => 'horizontal',
-		'cols' => 10,
-		'text' => 1
-		)
-	);
-	?>
-	<fieldset id="edd_paytrail_image">
-		<span><legend><?php echo apply_filters( 'edd_paytrail_checkout_before_image_text', __( 'You can use Paytrail account or finnish banks.', 'edd-paytrail' ) ); ?></legend></span>
-		<?php echo '<p><img src="https://img.verkkomaksut.fi/index.svm?id=' . $paytrail_merchant_id . '&type=' . $image_args['type'] . '&cols=' . $image_args['cols'] . '&text=' . $image_args['text'] . '&auth=' . $auth_code . '" alt="' . _x( 'Paytrail', 'Alt tag for Paytrail image', 'edd-paytrail' ) . '" title="' . _x( 'Paytrail', 'Title tag for Paytrail image', 'edd-paytrail' ) . '"/></p>'; ?>
-	</fieldset>
-	<?php
-	
-}
-add_action( 'edd_purchase_form_top', 'edd_paytrail_add_image' );
-
-/**
  * Process Paytrail submission.
  *
  * @access      public
@@ -209,22 +125,26 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 	/* Load the paytrail module payment file. */
 	require_once( EDD_PAYTRAIL_INCLUDES . 'Verkkomaksut_Module_Rest.php' );
 	
-	/* Error validation */
+	/* Error validation when showing address fields. */
 	
-	if( !isset( $_POST['card_address'] ) || $_POST['card_address'] == '' ) {
-		edd_set_error( 'empty_card', __( 'You must enter the address', 'edd-paytrail' ) );
-	}
+	if ( edd_paytrail_show_extra_address_fields() ) {
+	
+		if( !isset( $_POST['card_address'] ) || $_POST['card_address'] == '' ) {
+			edd_set_error( 'empty_card', __( 'You must enter the address', 'edd-paytrail' ) );
+		}
 
-	if( !isset( $_POST['card_zip'] ) || $_POST['card_zip'] == '' ) {
-		edd_set_error( 'empty_card_name', __( 'You must enter the zip code', 'edd-paytrail' ) );
-	}
+		if( !isset( $_POST['card_zip'] ) || $_POST['card_zip'] == '' ) {
+			edd_set_error( 'empty_card_name', __( 'You must enter the zip code', 'edd-paytrail' ) );
+		}
 
-	if( !isset( $_POST['card_city'] ) || $_POST['card_city'] == '' ) {
-		edd_set_error( 'empty_month', __( 'You must enter the city', 'edd-paytrail' ) );
-	}
+		if( !isset( $_POST['card_city'] ) || $_POST['card_city'] == '' ) {
+			edd_set_error( 'empty_month', __( 'You must enter the city', 'edd-paytrail' ) );
+		}
 
-	if( !isset( $_POST['billing_country'] ) || $_POST['billing_country'] == '' || $_POST['billing_country'] == '*' ) {
-		edd_set_error( 'empty_year', __( 'You must enter the country', 'edd-paytrail' ) );
+		if( !isset( $_POST['billing_country'] ) || $_POST['billing_country'] == '' || $_POST['billing_country'] == '*' ) {
+			edd_set_error( 'empty_year', __( 'You must enter the country', 'edd-paytrail' ) );
+		}
+		
 	}
 
 	/* Get errors. */
@@ -255,8 +175,7 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 			/* Add note to payment notes. */
 			edd_insert_payment_note( $payment_record, sprintf( __( 'Status changed to Pending', 'edd-paytrail' ) ) );
 			
-		}
-		else {
+		} else {
 			
 			/* Payment could not be recorded. */
 			if( $payment_record )
@@ -279,72 +198,101 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 			""                                                                                  // pending url is not in use
 		);
 		
-		// get additional info array from $purchase_data
-		$card_info = $purchase_data['card_info'];
-		
-		// First Name
-		$name1 = $purchase_data['user_info']['first_name'];
-		
-		// Last Name
-        $name2 = $purchase_data['user_info']['last_name'];
-		
-        // Email
-        $email = $purchase_data['user_email'];
-		
-		// Address
-        $addr = $card_info['card_address'];
-		
-        // ZIP
-        $zip = $card_info['card_zip'];
-
-        // City
-        $city = $card_info['card_city'];
-		
-        // Country
-        $country = $card_info['card_country'];
-		
-		/* Create contact for payment. This is sent to Paytrail account. */
-		$contact = new Verkkomaksut_Module_Rest_Contact(
-			$name1,     // firstname
-			$name2,     // lastname
-			$email,     // email
-			$addr,      // street address
-			$zip,       // zip code (postinumero in finnish)
-			$city,      // city (postitoimipaikka in finnish)
-			$country,   // country (ISO-3166)
-			"",         // phone
-			"",         // cell phone
-			""          // company name
-		);
-
-		/* Payment creation. */
+		/* Order number and total price. */
 		$orderNumber = $purchase_data['purchase_key']; // Use distinguished order number
 		$price = $purchase_data['price'];              // Total (incl. VAT)
-		$payment = new Verkkomaksut_Module_Rest_Payment_E1( $orderNumber, $urlset, $contact );
 		
-		/* Adding one or more product rows to the payment. */
-		foreach( $purchase_data['cart_details'] as $item ) {
-
-			//$price = $item['price'] - $item['tax'];
-
-			if( edd_has_variable_prices( $item['id'] ) && edd_get_cart_item_price_id( $item ) !== false ) {
-				$item['name'] .= ' - ' . edd_get_cart_item_price_name( $item );
-	        }
+		/* If site owner wants to show address fields, send that info and product info in Paytrail. */
+		if ( edd_paytrail_show_extra_address_fields() ) {
+		
+			// get additional info array from $purchase_data
+			$card_info = $purchase_data['card_info'];
+		
+			// First Name
+			$name1 = $purchase_data['user_info']['first_name'];
+		
+			// Last Name
+			$name2 = $purchase_data['user_info']['last_name'];
+		
+			// Email
+			$email = $purchase_data['user_email'];
+		
+			if ( edd_paytrail_show_extra_user_info() ) {
 			
-			/* Get product code if SKU is in use. */
-			if( edd_use_skus() ) {
-				$product_code = edd_get_download_sku( $item['id'] );
+				// Phone
+				$phone = $purchase_data['phone'];
+				// Company
+				$company = $purchase_data['company'];
+			
+			} else {
+		
+				// Phone
+				$phone = '';
+				// Company
+				$company = '';	
+			
 			}
-				
-			$payment->addProduct(
-				$item['name'],                                 // product title
-				$product_code,                                 // product code
-				$item['quantity'],                             // product quantity
-				$item['price'],                                // product price (/apiece)
-				$edd_options['tax_rate'],                      // Tax percentage
-				"0.00",                                        // Discount percentage
-				Verkkomaksut_Module_Rest_Product::TYPE_NORMAL  // Product type			
+		
+			// Address
+			$addr = $card_info['card_address'];
+		
+			// ZIP
+			$zip = $card_info['card_zip'];
+
+			// City
+			$city = $card_info['card_city'];
+		
+			// Country
+			$country = $card_info['card_country'];
+		
+			/* Create contact for payment. This is sent to Paytrail account. */
+			$contact = new Verkkomaksut_Module_Rest_Contact(
+				$name1,     // firstname
+				$name2,     // lastname
+				$email,     // email
+				$addr,      // street address
+				$zip,       // zip code (postinumero in finnish)
+				$city,      // city (postitoimipaikka in finnish)
+				$country,   // country (ISO-3166)
+				"",         // phone
+				$phone,     // cell phone
+				$company    // company name
 			);
+			
+
+			/* Payment creation. */
+			$payment = new Verkkomaksut_Module_Rest_Payment_E1( $orderNumber, $urlset, $contact );
+		
+			/* Adding one or more product rows to the payment. */
+			foreach( $purchase_data['cart_details'] as $item ) {
+
+				//$price = $item['price'] - $item['tax'];
+
+				if( edd_has_variable_prices( $item['id'] ) && edd_get_cart_item_price_id( $item ) !== false ) {
+					$item['name'] .= ' - ' . edd_get_cart_item_price_name( $item );
+				}
+			
+				/* Get product code if SKU is in use. */
+				if( edd_use_skus() ) {
+					$product_code = edd_get_download_sku( $item['id'] );
+				}
+				
+				$payment->addProduct(
+					$item['name'],                                 // product title
+					$product_code,                                 // product code
+					$item['quantity'],                             // product quantity
+					$item['price'],                                // product price (/apiece)
+					$edd_options['tax_rate'],                      // Tax percentage
+					"0.00",                                        // Discount percentage
+					Verkkomaksut_Module_Rest_Product::TYPE_NORMAL  // Product type			
+				);
+			}
+			
+		} else {
+		
+			/* Payment creation without adddress and product info. */
+			$payment = new Verkkomaksut_Module_Rest_Payment_S1( $orderNumber, $urlset, $price );			
+		
 		}
 
 		/* Set locale. The default language is en_US. See other options from PHP class. */
