@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EDD Paytrail Gateway 1.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/edd-paytrail\n"
-"POT-Creation-Date: 2013-11-03 17:46:12+00:00\n"
+"POT-Creation-Date: 2013-11-18 16:34:41+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,59 +20,161 @@ msgstr ""
 msgid "Deactivate License"
 msgstr ""
 
-#: includes/functions.php:14
+#: includes/functions.php:30
+msgid "Billing Details"
+msgstr ""
+
+#: includes/functions.php:34
+msgid "Billing Address"
+msgstr ""
+
+#: includes/functions.php:37
+msgid "This is your billing address."
+msgstr ""
+
+#: includes/functions.php:38
+msgid "Address line"
+msgstr ""
+
+#: includes/functions.php:42
+msgid "Billing Zip / Postal Code"
+msgstr ""
+
+#: includes/functions.php:45
+msgid "The zip or postal code for your billing address."
+msgstr ""
+
+#: includes/functions.php:46
+msgid "Zip / Postal code"
+msgstr ""
+
+#: includes/functions.php:50
+msgid "Billing City"
+msgstr ""
+
+#: includes/functions.php:53
+msgid "The city for your billing address."
+msgstr ""
+
+#: includes/functions.php:54
+msgid "City"
+msgstr ""
+
+#: includes/functions.php:58
+msgid "Billing Country"
+msgstr ""
+
+#: includes/functions.php:61
+msgid "The country for your billing address."
+msgstr ""
+
+#: includes/functions.php:98 includes/functions.php:118
 msgid "Paytrail"
 msgstr ""
 
-#: includes/functions.php:82
-msgid "Error: we could not create your payment to Paytrail. Please try again"
+#: includes/functions.php:125
+msgid "Hide Paytrail image"
 msgstr ""
 
-#: includes/functions.php:114
-msgid "Paytrail order number: %s"
+#: includes/functions.php:126
+msgid "Check this if you want to hide Paytrail image on checkout page."
 msgstr ""
 
-#: includes/functions.php:119
+#: includes/functions.php:181
+msgid "You can use Paytrail account or finnish banks."
+msgstr ""
+
+#: includes/functions.php:182
+msgctxt "Alt tag for Paytrail image"
+msgid "Paytrail"
+msgstr ""
+
+#: includes/functions.php:182
+msgctxt "Title tag for Paytrail image"
+msgid "Paytrail"
+msgstr ""
+
+#: includes/functions.php:215
+msgid "You must enter the address"
+msgstr ""
+
+#: includes/functions.php:219
+msgid "You must enter the zip code"
+msgstr ""
+
+#: includes/functions.php:223
+msgid "You must enter the city"
+msgstr ""
+
+#: includes/functions.php:227
+msgid "You must enter the country"
+msgstr ""
+
+#: includes/functions.php:256
+msgid "Status changed to Pending"
+msgstr ""
+
+#: includes/functions.php:263
 msgid "Error: your payment could not be recorded. Please try again"
 msgstr ""
 
-#: includes/settings.php:16
+#: includes/functions.php:267
+msgid "Error: Paytrail only accepts EUR as currency. Contact the site admin."
+msgstr ""
+
+#: includes/functions.php:361
+msgid "Error: we could not create your payment to Paytrail. Please try again"
+msgstr ""
+
+#: includes/functions.php:410
+msgid "Paytrail order number: %s"
+msgstr ""
+
+#: includes/functions.php:415
+msgid "Error: your payment could not be processed. Please try again"
+msgstr ""
+
+#: includes/functions.php:440
+msgid "Note: You need to use EUR currency for Paytrail to work. Go to %ssettings%s."
+msgstr ""
+
+#: includes/settings.php:19
 msgid "Paytrail Settings"
 msgstr ""
 
-#: includes/settings.php:17
+#: includes/settings.php:20
 msgid "Configure the Paytrail settings"
 msgstr ""
 
-#: includes/settings.php:22
+#: includes/settings.php:25
 msgid "Merchant ID"
 msgstr ""
 
-#: includes/settings.php:23
+#: includes/settings.php:26
 msgid "Enter your Paytrail Merchant ID. This is needed in order to take payment."
 msgstr ""
 
-#: includes/settings.php:29
+#: includes/settings.php:32
 msgid "Merchant Secret"
 msgstr ""
 
-#: includes/settings.php:30
+#: includes/settings.php:33
 msgid "Enter your Paytrail Merchant Secret. This is needed in order to take payment."
 msgstr ""
 
-#: includes/settings.php:36
+#: includes/settings.php:39
 msgid "Test Merchant ID"
 msgstr ""
 
-#: includes/settings.php:37
+#: includes/settings.php:40
 msgid "Enter your Paytrail test Merchant ID."
 msgstr ""
 
-#: includes/settings.php:43
+#: includes/settings.php:46
 msgid "Test Merchant Secret"
 msgstr ""
 
-#: includes/settings.php:44
+#: includes/settings.php:47
 msgid "Enter your Paytrail test Merchant Secret."
 msgstr ""
 #. Plugin Name of the plugin/theme

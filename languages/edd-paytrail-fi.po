@@ -4,15 +4,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EDD Paytrail Gateway 1.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/edd-paytrail\n"
-"POT-Creation-Date: 2013-11-03 17:46:12+00:00\n"
+"POT-Creation-Date: 2013-11-18 16:34:41+00:00\n"
+"PO-Revision-Date: 2013-11-18 18:48+0200\n"
+"Last-Translator: Sami Keijonen <sami.keijonen@foxnet.fi>\n"
+"Language-Team: Foxnet <sami.keijonen@foxnet.fi>\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2013-11-06 18:12+0200\n"
-"Last-Translator: Sami Keijonen <sami.keijonen@foxnet.fi>\n"
-"Language-Team: Foxnet <sami.keijonen@foxnet.fi>\n"
 "X-Generator: Poedit 1.5.7\n"
-"Language: fi\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: includes/EDD_License_Handler.php:112
@@ -23,68 +23,177 @@ msgstr "%1$s Licenssiavain"
 msgid "Deactivate License"
 msgstr "Poista lisenssiavain käytöstä"
 
-#: includes/functions.php:14
+#: includes/functions.php:30
+msgid "Billing Details"
+msgstr "Osoitetiedot"
+
+#: includes/functions.php:34
+msgid "Billing Address"
+msgstr "Osoite"
+
+#: includes/functions.php:37
+msgid "This is your billing address."
+msgstr "Kirjoita osoitteesi."
+
+#: includes/functions.php:38
+msgid "Address line"
+msgstr "Osoiterivi"
+
+#: includes/functions.php:42
+msgid "Billing Zip / Postal Code"
+msgstr "Postinumero"
+
+#: includes/functions.php:45
+msgid "The zip or postal code for your billing address."
+msgstr "Kirjoita postinumero."
+
+#: includes/functions.php:46
+msgid "Zip / Postal code"
+msgstr "Postinumero"
+
+#: includes/functions.php:50
+msgid "Billing City"
+msgstr "Postitoimipaikka"
+
+#: includes/functions.php:53
+msgid "The city for your billing address."
+msgstr "Kirjoita postitoimipaikka."
+
+#: includes/functions.php:54
+msgid "City"
+msgstr "Postitoimipaikka"
+
+#: includes/functions.php:58
+msgid "Billing Country"
+msgstr "Maa"
+
+#: includes/functions.php:61
+msgid "The country for your billing address."
+msgstr "Valitse maa."
+
+#: includes/functions.php:98 includes/functions.php:118
 msgid "Paytrail"
 msgstr "Paytrail"
 
-#: includes/functions.php:82
+#: includes/functions.php:125
+msgid "Hide Paytrail image"
+msgstr "Piilota Paytrail-kuva"
+
+#: includes/functions.php:126
+msgid "Check this if you want to hide Paytrail image on checkout page."
+msgstr "Valitse tämä, jos haluat piilottaa Paytrail-kuvan maksusivulla."
+
+#: includes/functions.php:181
+msgid "You can use Paytrail account or finnish banks."
+msgstr ""
+"Voit käyttää maksaessasi Paytrail-tiliä tai suomalaisia verkkopankkeja."
+
+#: includes/functions.php:182
+msgctxt "Alt tag for Paytrail image"
+msgid "Paytrail"
+msgstr "Paytrail"
+
+#: includes/functions.php:182
+msgctxt "Title tag for Paytrail image"
+msgid "Paytrail"
+msgstr "Paytrail"
+
+#: includes/functions.php:215
+msgid "You must enter the address"
+msgstr "Kirjoita osoite"
+
+#: includes/functions.php:219
+msgid "You must enter the zip code"
+msgstr "Kirjoita postinumero"
+
+#: includes/functions.php:223
+msgid "You must enter the city"
+msgstr "Kirjoita postitoimipaikka"
+
+#: includes/functions.php:227
+msgid "You must enter the country"
+msgstr "Valitse maa"
+
+#: includes/functions.php:256
+msgid "Status changed to Pending"
+msgstr "Tila muutettu vireillä olevaksi"
+
+#: includes/functions.php:263
+msgid "Error: your payment could not be recorded. Please try again"
+msgstr ""
+"Virhe: Emme onnistuneet tallentamaan maksua. Ole hyvä ja kokeile uudelleen."
+
+#: includes/functions.php:267
+msgid "Error: Paytrail only accepts EUR as currency. Contact the site admin."
+msgstr ""
+"Virhe: Paytrail hyväksyy vain eurot maksun yhteydessä. Ota yhteys sivun "
+"ylläpitäjään."
+
+#: includes/functions.php:361
 msgid "Error: we could not create your payment to Paytrail. Please try again"
 msgstr ""
 "Virhe: Emme onnistuneet luomaan maksua Paytrail-maksulle. Ole hyvä ja "
 "kokeile uudelleen."
 
-#: includes/functions.php:114
+#: includes/functions.php:410
 msgid "Paytrail order number: %s"
 msgstr "Paytrail tilausnumero: %s"
 
-#: includes/functions.php:119
-msgid "Error: your payment could not be recorded. Please try again"
+#: includes/functions.php:415
+msgid "Error: your payment could not be processed. Please try again"
 msgstr ""
 "Virhe: Emme onnistuneet tallentamaan maksua. Ole hyvä ja kokeile uudelleen."
 
-#: includes/settings.php:16
+#: includes/functions.php:440
+msgid ""
+"Note: You need to use EUR currency for Paytrail to work. Go to %ssettings%s."
+msgstr ""
+"Huom! Valutaan tulee olla Euroina, jotta Paytrail toimii. Mene %sasetuksiin"
+"%s."
+
+#: includes/settings.php:19
 msgid "Paytrail Settings"
 msgstr "Paytrail-asetukset"
 
-#: includes/settings.php:17
+#: includes/settings.php:20
 msgid "Configure the Paytrail settings"
 msgstr "Muokkaa Paytrailin asetuksia"
 
-#: includes/settings.php:22
+#: includes/settings.php:25
 msgid "Merchant ID"
 msgstr "Kauppiastunnus"
 
-#: includes/settings.php:23
+#: includes/settings.php:26
 msgid ""
 "Enter your Paytrail Merchant ID. This is needed in order to take payment."
 msgstr ""
 "Kirjoita Paytrailin kauppiastunnus. Tarvitset tämän, jotta voit maksaa "
 "Paytrail-maksupalveun kautta."
 
-#: includes/settings.php:29
+#: includes/settings.php:32
 msgid "Merchant Secret"
 msgstr "Kauppiasvarmenne"
 
-#: includes/settings.php:30
+#: includes/settings.php:33
 msgid ""
 "Enter your Paytrail Merchant Secret. This is needed in order to take payment."
 msgstr ""
 "Kirjoita Paytrailin kauppiasvarmenne. Tarvitset tämän, jotta voit maksaa "
 "Paytrail-maksupalveun kautta."
 
-#: includes/settings.php:36
+#: includes/settings.php:39
 msgid "Test Merchant ID"
 msgstr "Testikauppiastunnus"
 
-#: includes/settings.php:37
+#: includes/settings.php:40
 msgid "Enter your Paytrail test Merchant ID."
 msgstr "Kirjoita Paytrailin testikauppiastunnus."
 
-#: includes/settings.php:43
+#: includes/settings.php:46
 msgid "Test Merchant Secret"
 msgstr "Testikauppiasvarmenne"
 
-#: includes/settings.php:44
+#: includes/settings.php:47
 msgid "Enter your Paytrail test Merchant Secret."
 msgstr "Kirjoita Paytrailin testikauppiasvarmenne."
 
