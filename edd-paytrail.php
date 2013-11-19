@@ -111,8 +111,11 @@ final class EDD_PAYTRAIL {
 	public function includes() {
 		
 		/* Load necessary files. */
-		require_once( EDD_PAYTRAIL_INCLUDES . 'functions.php' );
 		require_once( EDD_PAYTRAIL_INCLUDES . 'settings.php' );
+		require_once( EDD_PAYTRAIL_INCLUDES . 'user-info.php' );
+		require_once( EDD_PAYTRAIL_INCLUDES . 'address-info.php' );
+		require_once( EDD_PAYTRAIL_INCLUDES . 'image-info.php' );
+		require_once( EDD_PAYTRAIL_INCLUDES . 'functions.php' );
 		
 		/* Load the EDD license handler only if not already loaded. Must be placed in the main plugin file */
 		if( ! class_exists( 'EDD_License' ) )
