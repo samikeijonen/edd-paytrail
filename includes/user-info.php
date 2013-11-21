@@ -18,13 +18,13 @@ function edd_paytrail_custom_checkout_fields() {
 	?>
 	
 	<p id="edd-paytrail-phone-wrap">
-		<label class="edd-label" for="edd-paytrail-phone"><?php _e( 'Phone Number', 'edd-paytrail' ); ?></label>
-		<span class="edd-description"><?php _e( 'Enter your phone number.', 'edd-paytrail' ); ?></span>
+		<label class="edd-label" for="edd-paytrail-phone"><?php echo apply_filters( 'edd_paytrail_phone_label', __( 'Phone Number', 'edd-paytrail' ) ); ?></label>
+		<span class="edd-description"><?php echo apply_filters( 'edd_paytrail_phone_description', __( 'Enter your phone number.', 'edd-paytrail' ) ); ?></span>
 		<input class="edd-input" type="text" name="edd_paytrail_phone" id="edd-paytrail-phone" placeholder="<?php _e( 'Phone Number', 'edd-paytrail' ); ?>" value="" />
 	</p>
 	<p id="edd-paytrail-company-wrap">
-		<label class="edd-label" for="edd-paytrail-company"><?php _e( 'Company Name', 'edd-paytrail' ); ?></label>
-		<span class="edd-description"><?php _e( 'Enter the name of your company.', 'edd-paytrail' ); ?></span>
+		<label class="edd-label" for="edd-paytrail-company"><?php echo apply_filters( 'edd_paytrail_company_label', __( 'Company Name', 'edd-paytrail' ) ); ?></label>
+		<span class="edd-description"><?php echo apply_filters( 'edd_paytrail_company_description', __( 'Enter the name of your company.', 'edd-paytrail' ) ); ?></span>
 		<input class="edd-input" type="text" name="edd_paytrail_company" id="edd-paytrail-company" placeholder="<?php _e('Company Name', 'edd-paytrail'); ?>" value="" />
 	</p>
 	
