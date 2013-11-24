@@ -7,11 +7,6 @@
  */
 function edd_paytrail_address_fields() {
 
-	/* Return if paytrail is not chosen payment gateway or site owner doesn't want to use address fields. */
-	if ( 'paytrail' !== edd_get_chosen_gateway() || ! edd_paytrail_show_extra_address_fields() ) {
-		return;
-	}
- 
 	$logged_in = is_user_logged_in();
 
 	if( $logged_in ) {
@@ -77,8 +72,11 @@ function edd_paytrail_address_fields() {
 	echo ob_get_clean();
 	
 }
-remove_action( 'edd_purchase_form_after_cc_form', 'edd_checkout_tax_fields', 999 ); // Remove original address fields.
-add_action( 'edd_purchase_form_after_cc_form', 'edd_paytrail_address_fields', 999 ); // Add own address fields.
-add_action( 'edd_paytrail_cc_form', '__return_false' ); // Remove credit card info.
+/* Show finnish type of address fields if paytrail is chosen payment gateway and site owner wants to use these address fields. */
+if ( 'paytrail' == edd_get_chosen_gateway() && edd_paytrail_show_extra_address_fields() ) {
+	remove_action( 'edd_purchase_form_after_cc_form', 'edd_checkout_tax_fields', 999 ); // Remove original address fields.
+	add_action( 'edd_purchase_form_after_cc_form', 'edd_paytrail_address_fields', 999 ); // Add own address fields.
+}
+add_action( 'edd_paytrail_cc_form', '__return_false' ); // Remove credit card info from paytrail gateway.
 
 ?>
