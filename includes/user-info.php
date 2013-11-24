@@ -41,7 +41,7 @@ add_action( 'edd_purchase_form_user_info', 'edd_paytrail_custom_checkout_fields'
  */
 function edd_paytrail_store_custom_fields( $payment_meta ) {
 
-	/* Return if site owner don't want to show additional user info. */
+	/* Store if site owner wants to show additional user info. */
 	if ( edd_paytrail_show_extra_user_info() ) {
 		$payment_meta['phone']   = isset( $_POST['edd_paytrail_phone'] ) ? sanitize_text_field( $_POST['edd_paytrail_phone'] ) : '';
 		$payment_meta['company'] = isset( $_POST['edd_paytrail_company'] ) ? sanitize_text_field( $_POST['edd_paytrail_company'] ) : '';
