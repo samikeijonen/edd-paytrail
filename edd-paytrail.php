@@ -2,7 +2,7 @@
 /**
 * Plugin Name: EDD Paytrail Gateway
 * Plugin URI: https://foxnet-themes.fi/downloads/edd-paytrail/
-* Description: Adds a payment gateway for Paytrail Payment Gateaway
+* Description: Adds Paytrail payment gateway to Easy Digital Downloads plugin 
 * Version: 1.0
 * Author: Sami Keijonen
 * Author URI: https://foxnet-themes.fi
@@ -43,15 +43,22 @@ final class EDD_PAYTRAIL {
 	* @since 1.0
 	*/
 	public function __construct() {
+	
+		/* Load the EDD license handler only if not already loaded. Must be placed in the main plugin file */
+		if( ! class_exists( 'EDD_License' ) )
+			include( dirname( __FILE__ ) . '/includes/EDD_License_Handler.php' );
+		
+		/*  Instantiate the licensing / updater. Must be placed in the main plugin file */
+		$license = new EDD_License( __FILE__, 'Paytrail Payment Gateway', '1.0', 'Sami Keijonen', null, 'http://localhost/foxnet-themes-shop' );
 
 		/* Set the constants needed by the plugin. */
-		add_action( 'plugins_loaded', array( &$this, 'constants' ), 1 );
+		add_action( 'plugins_loaded', array( $this, 'constants' ), 1 );
 
 		/* Internationalize the text strings used. */
-		add_action( 'plugins_loaded', array( &$this, 'i18n' ), 2 );
+		add_action( 'plugins_loaded', array( $this, 'i18n' ), 2 );
 
 		/* Load the functions files. */
-		add_action( 'plugins_loaded', array( &$this, 'includes' ), 3 );
+		add_action( 'plugins_loaded', array( $this, 'includes' ), 3 );
 
 	}
 
@@ -93,7 +100,7 @@ final class EDD_PAYTRAIL {
 	* @since 1.0
 	*/
 	public function i18n() {
-
+	
 		/* Load the translation of the plugin. */
 		$domain = 'edd-paytrail';
 		$locale = apply_filters( 'edd_paytrail_locale', get_locale(), $domain );
@@ -109,20 +116,13 @@ final class EDD_PAYTRAIL {
 	* @since 1.0
 	*/
 	public function includes() {
-		
+
 		/* Load necessary files. */
 		require_once( EDD_PAYTRAIL_INCLUDES . 'settings.php' );
 		require_once( EDD_PAYTRAIL_INCLUDES . 'user-info.php' );
 		require_once( EDD_PAYTRAIL_INCLUDES . 'address-info.php' );
 		require_once( EDD_PAYTRAIL_INCLUDES . 'image-info.php' );
 		require_once( EDD_PAYTRAIL_INCLUDES . 'functions.php' );
-		
-		/* Load the EDD license handler only if not already loaded. Must be placed in the main plugin file */
-		if( ! class_exists( 'EDD_License' ) )
-			include( dirname( __FILE__ ) . '/includes/EDD_License_Handler.php' );
-
-		/* Instantiate the licensing / updater. Must be placed in the main plugin file */
-		$license = new EDD_License( __FILE__, 'Paytrail Payment Gateway', '1.0', 'Sami Keijonen', null, 'http://localhost/foxnet-themes-shop' );
 		
 	}
 	
