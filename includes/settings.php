@@ -45,7 +45,7 @@ function edd_paytrail_add_settings( $settings ) {
 	$paytrail_settings = array(
 		array(
 			'id'    => 'paytrail_settings',
-			'name'  => '<strong>' . __( 'Paytrail Settings', 'edd-paytrail' ) . '</strong>',
+			'name'  => '<strong>' . _x( 'Paytrail Settings', 'Paytrail settings in Gateways page', 'edd-paytrail' ) . '</strong>',
 			'desc'  => __( 'Configure the Paytrail settings', 'edd-paytrail' ),
 			'type'  => 'header'
 		),
@@ -97,7 +97,7 @@ function edd_paytrail_settings( $settings ) {
 	$extensions_settings = array(
 		array(
 			'id' => 'edd_paytrail_header',
-			'name' => '<strong>' . __( 'Paytrail', 'edd-paytrail' ) . '</strong>',
+			'name' => '<strong>' . _x( 'Paytrail Settings', 'Paytrail settings in Extensions page', 'edd-paytrail' ) . '</strong>',
 			'desc' => '',
 			'type' => 'header',
 			'size' => 'regular'
@@ -111,13 +111,13 @@ function edd_paytrail_settings( $settings ) {
 		array(
 			'id' => 'edd_paytrail_show_user_info',
 			'name' => __( 'Additional user info', 'edd-paytrail' ),
-			'desc' => __( 'Check this if you want to show phone number and company name fields on checkout page. This info is also send to Paytrail account.', 'edd-paytrail' ),
+			'desc' => __( 'Check this if you want to show phone number and company name fields on checkout page. This info is also send to Paytrail account if you use Finnish address fields below.', 'edd-paytrail' ),
 			'type' => 'checkbox'
 		),
 		array(
 			'id' => 'edd_paytrail_show_address_fields',
-			'name' => __( 'Show address fields', 'edd-paytrail' ),
-			'desc' => __( 'Check this if you want to show address fields on checkout page. Address and product info is also send to Paytrail account.', 'edd-paytrail' ),
+			'name' => __( 'Finnish address fields', 'edd-paytrail' ),
+			'desc' => __( 'Check this if you want to show address fields like in Finland on checkout page. Address and product info is also send to Paytrail account in this case.', 'edd-paytrail' ),
 			'type' => 'checkbox'
 		)
 	);
