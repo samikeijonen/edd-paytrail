@@ -277,9 +277,13 @@ function edd_paytrail_confirm_payment() {
 			
 		}
 		else {
+		
 			/* Payment receipt was not valid, possible payment fraud attempt. */
-			edd_set_error( 'authorize_error', __( 'Error: your payment could not be processed. Please try again', 'edd-paytrail' ) );
-			edd_send_back_to_checkout( '?payment-mode=' . $purchase_data['post_data']['edd-gateway'] );
+			edd_insert_payment_note( absint( $_GET['confirm_payment_id'] ), __( 'There was possible payment fraud attempt.', 'edd-paytrail' ) );
+			
+			/* Send back to transaction failed page. */
+			edd_paytrail_send_to_transaction_failed_page();
+			
 		}
 	
 	}
@@ -294,7 +298,6 @@ add_action( 'template_redirect', 'edd_paytrail_confirm_payment' );
  * @since       1.0
  * @return      void
 */
-
 function edd_paytrail_admin_messages() {
 
 	global $typenow, $edd_options;
@@ -318,7 +321,6 @@ add_action( 'admin_notices', 'edd_paytrail_admin_messages' );
  * @since       1.0
  * @return      void
  */
-
 function edd_paytrail_scripts() {
 	
 	$js_dir = EDD_PAYTRAIL_URL . 'js/';
@@ -341,7 +343,6 @@ function edd_paytrail_scripts() {
  * @since       1.0
  * @return      void
  */
-
 function edd_paytrail_locale() {
 
 	/* Valid locales are fi_FI, en_US and sv_SE. */
@@ -366,6 +367,23 @@ function edd_paytrail_locale() {
 	
 	return $locale;
 
+}
+
+/**
+ * Send back to transaction failed page.
+ *
+ * @access      public
+ * @since       1.0
+ * @return      void
+ */
+function edd_paytrail_send_to_transaction_failed_page() {
+	
+	/* Get transaction failed uri. */
+	$redirect = edd_get_failed_transaction_uri();
+	
+	wp_redirect( apply_filters( 'edd_paytrail_send_to_transaction_failed_page', $redirect ) );
+	edd_die();
+	
 }
 
 ?>
