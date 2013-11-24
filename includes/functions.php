@@ -120,7 +120,7 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 		$orderNumber = $purchase_data['purchase_key']; // Use distinguished order number
 		$price = $purchase_data['price'];              // Total (incl. VAT)
 		
-		/* If site owner wants to show address fields, send that info and product info in Paytrail. */
+		/* If site owner wants to show finnish address fields then send more info in Paytrail. */
 		if ( edd_paytrail_show_extra_address_fields() ) {
 		
 			// get additional info array from $purchase_data
