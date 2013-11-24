@@ -31,7 +31,7 @@ final class EDD_PAYTRAIL {
 	/**
 	 * Holds the instances of this class.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0
 	 * @access private
 	 * @var    object
 	 */
@@ -89,7 +89,7 @@ final class EDD_PAYTRAIL {
 		}
 
 		if ( ! defined( 'EDD_PAYTRAIL_STORE_NAME' ) ) {
-			define( 'EDD_PAYTRAIL_STORE_NAME', 'EDD Paytrail Gateway' );
+			define( 'EDD_PAYTRAIL_STORE_NAME', 'Paytrail Payment Gateway' );
 		}
 
 	}
