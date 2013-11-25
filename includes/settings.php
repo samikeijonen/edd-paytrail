@@ -8,6 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @access      public
  * @since       1.0
+ * @return      boolean
  */
 function edd_paytrail_show_extra_user_info() {
 
@@ -22,6 +23,7 @@ function edd_paytrail_show_extra_user_info() {
  *
  * @access      public
  * @since       1.0
+ * @return      boolean
  */
 function edd_paytrail_show_extra_address_fields() {
 
@@ -40,38 +42,38 @@ function edd_paytrail_show_extra_address_fields() {
  * @return      array
  */
 
-function edd_paytrail_add_settings( $settings ) {
+function edd_paytrail_gateways_settings( $settings ) {
 
 	$paytrail_settings = array(
 		array(
-			'id'    => 'paytrail_settings',
+			'id'    => 'edd_paytrail_settings',
 			'name'  => '<strong>' . _x( 'Paytrail Settings', 'Paytrail settings in Gateways page', 'edd-paytrail' ) . '</strong>',
 			'desc'  => __( 'Configure the Paytrail settings', 'edd-paytrail' ),
 			'type'  => 'header'
 		),
 		array(
-			'id'    => 'paytrail_merchant_id',
+			'id'    => 'edd_paytrail_merchant_id',
 			'name'  => __( 'Merchant ID', 'edd-paytrail' ),
 			'desc'  => __( 'Enter your Paytrail Merchant ID. This is needed in order to take payment.', 'edd-paytrail' ),
 			'type'  => 'text',
 			'size'  => 'regular'
 		),
 		array(
-			'id'    => 'paytrail_merchant_secret',
+			'id'    => 'edd_paytrail_merchant_secret',
 			'name'  => __( 'Merchant Secret', 'edd-paytrail' ),
 			'desc'  => __( 'Enter your Paytrail Merchant Secret. This is needed in order to take payment.', 'edd-paytrail' ),
 			'type'  => 'text',
 			'size'  => 'regular'
 		),
 		array(
-			'id'    => 'paytrail_test_merchant_id',
+			'id'    => 'edd_paytrail_test_merchant_id',
 			'name'  => __( 'Test Merchant ID', 'edd-paytrail' ),
 			'desc'  => __( 'Enter your Paytrail test Merchant ID.', 'edd-paytrail' ),
 			'type'  => 'text',
 			'size'  => 'regular'
 		),
 		array(
-			'id'    => 'paytrail_test_merchant_secret',
+			'id'    => 'edd_paytrail_test_merchant_secret',
 			'name'  => __( 'Test Merchant Secret', 'edd-paytrail' ),
 			'desc'  => __( 'Enter your Paytrail test Merchant Secret.', 'edd-paytrail' ),
 			'type'  => 'text',
@@ -82,7 +84,7 @@ function edd_paytrail_add_settings( $settings ) {
 	return array_merge( $settings, $paytrail_settings );
 
 }
-add_filter( 'edd_settings_gateways', 'edd_paytrail_add_settings' );
+add_filter( 'edd_settings_gateways', 'edd_paytrail_gateways_settings' );
 
 /**
  * Registers the new options in Extensions.
@@ -92,7 +94,7 @@ add_filter( 'edd_settings_gateways', 'edd_paytrail_add_settings' );
  * @param 		$settings array the existing plugin settings
  * @return      array
 */
-function edd_paytrail_settings( $settings ) {
+function edd_paytrail_extensions_settings( $settings ) {
 
 	$extensions_settings = array(
 		array(
@@ -125,6 +127,6 @@ function edd_paytrail_settings( $settings ) {
 	return array_merge( $settings, $extensions_settings );
 
 }
-add_filter( 'edd_settings_extensions', 'edd_paytrail_settings' );
+add_filter( 'edd_settings_extensions', 'edd_paytrail_extensions_settings' );
 
 ?>
