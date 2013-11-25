@@ -1,10 +1,10 @@
 === EDD Paytrail Gateway ===
 Contributors: sami.keijonen
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E65RCFVD3QGYU
-Tags: EDD, download, downloads, add-on, digital, checkout, checkout.fi
-Requires at least: 3.4
-Tested up to: 3.6
-Stable tag: 0.1.0
+Tags: EDD, download, downloads, add-on, digital, checkout, paytrail
+Requires at least: 3.7
+Tested up to: 3.7.1
+Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,6 +28,6 @@ I needed this feature and someone else might need it too.
 
 == Changelog ==
 
-= 0.1 =
+= 1.0 =
 
 * Everything's brand new.
