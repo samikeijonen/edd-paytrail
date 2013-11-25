@@ -33,11 +33,11 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 	
 	/* Use test credentials if test mode is on. */
 	if( edd_is_test_mode() ) {
-		$paytrail_merchant_id = $edd_options['paytrail_test_merchant_id'];
-		$paytrail_merchant_secret = $edd_options['paytrail_test_merchant_secret'];
+		$paytrail_merchant_id = isset( $edd_options['edd_paytrail_test_merchant_id'] ) ? $edd_options['edd_paytrail_test_merchant_id'] : '';
+		$paytrail_merchant_secret = isset( $edd_options['edd_paytrail_test_merchant_secret'] ) ? $edd_options['edd_paytrail_test_merchant_secret'] : '';
 	} else {
-		$paytrail_merchant_id = $edd_options['paytrail_merchant_id'];
-		$paytrail_merchant_secret = $edd_options['paytrail_merchant_secret'];
+		$paytrail_merchant_id = isset( $edd_options['edd_paytrail_merchant_id'] ) ? $edd_options['edd_paytrail_merchant_id'] : '';
+		$paytrail_merchant_secret = isset ( $edd_options['edd_paytrail_merchant_secret'] ) ? $edd_options['edd_paytrail_merchant_secret'] : '';
 	}
 	
 	/* Load the paytrail module payment file. */
@@ -91,7 +91,7 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 		if( $payment_record && 'EUR' == $edd_options['currency'] ) {
 
 			/* Add note to payment notes. */
-			edd_insert_payment_note( $payment_record, sprintf( __( 'Status changed to Pending', 'edd-paytrail' ) ) );
+			edd_insert_payment_note( $payment_record, __( 'Status changed to Pending', 'edd-paytrail' ) );
 			
 		} else {
 			
@@ -117,7 +117,7 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 		);
 		
 		/* Order number and total price. */
-		$orderNumber = $purchase_data['purchase_key']; // Use distinguished order number
+		$order_number = $purchase_data['purchase_key']; // Use distinguished order number
 		$price = $purchase_data['price'];              // Total (incl. VAT)
 		
 		/* If site owner wants to show finnish address fields then send more info in Paytrail. */
@@ -179,7 +179,7 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 			
 
 			/* Payment creation. */
-			$payment = new Verkkomaksut_Module_Rest_Payment_E1( $orderNumber, $urlset, $contact );
+			$payment = new Verkkomaksut_Module_Rest_Payment_E1( $order_number, $urlset, $contact );
 		
 			/* Adding one or more product rows to the payment. */
 			foreach( $purchase_data['cart_details'] as $item ) {
@@ -209,7 +209,7 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 		} else {
 		
 			/* Payment creation without adddress and product info. */
-			$payment = new Verkkomaksut_Module_Rest_Payment_S1( $orderNumber, $urlset, $price );			
+			$payment = new Verkkomaksut_Module_Rest_Payment_S1( $order_number, $urlset, $price );			
 		
 		}
 
@@ -251,11 +251,11 @@ function edd_paytrail_confirm_payment() {
 	
 	/* Use test credentials if test mode is on. */
 	if( edd_is_test_mode() ) {
-		$paytrail_merchant_id = $edd_options['paytrail_test_merchant_id'];
-		$paytrail_merchant_secret = $edd_options['paytrail_test_merchant_secret'];
+		$paytrail_merchant_id = $edd_options['edd_paytrail_test_merchant_id'];
+		$paytrail_merchant_secret = $edd_options['edd_paytrail_test_merchant_secret'];
 	} else {
-		$paytrail_merchant_id = $edd_options['paytrail_merchant_id'];
-		$paytrail_merchant_secret = $edd_options['paytrail_merchant_secret'];
+		$paytrail_merchant_id = $edd_options['edd_paytrail_merchant_id'];
+		$paytrail_merchant_secret = $edd_options['edd_paytrail_merchant_secret'];
 	}
 	
 	/* Check that we are on success page and payment id is set. After that check for valid payment. */
@@ -315,28 +315,6 @@ function edd_paytrail_admin_messages() {
 add_action( 'admin_notices', 'edd_paytrail_admin_messages' );
 
 /**
- * Enqueue scripts.
- *
- * @access      public
- * @since       1.0
- * @return      void
- */
-function edd_paytrail_scripts() {
-	
-	$js_dir = EDD_PAYTRAIL_URL . 'js/';
-	
-	/* Load js only on checkout page and when paytrail is active. */
-	if ( edd_is_checkout() && edd_is_gateway_active( 'paytrail' ) ) {
- 
-		wp_enqueue_script( 'edd-paytrail-payment-widget',  $js_dir . 'payment-widget.js', array( 'jquery' ), EDD_PAYTRAIL_VERSION, true );
-		wp_enqueue_script( 'edd-paytrail-payment-widget-settings', $js_dir . 'settings-payment-widget.js', array( 'edd-paytrail-payment-widget' ), EDD_PAYTRAIL_VERSION, true );
-	
-	}
-	
- }
-//add_action( 'wp_enqueue_scripts', 'edd_paytrail_scripts' );
-
-/**
  * Get locale for payment page.
  *
  * @access      public
@@ -352,15 +330,15 @@ function edd_paytrail_locale() {
 
 	$locale = get_locale();
 
-	/* convert locales like "fi" to "fi_FI", in case that works for the given locale (sometimes it does). */
+	/* Convert locales like "fi" to "fi_FI", in case that works for the given locale (sometimes it does). */
 	if ( strlen( $locale ) == 2 ) {
 		$locale = strtolower( $locale ) . '_' . strtoupper( $locale );
 	}
 
-	/* convert things like en-US to en_US. */
+	/* Convert things like en-US to en_US. */
 	$locale = str_replace( '-', '_', $locale );
 
-	/* check to see if the locale is a valid one, if not, use en_US as a fallback */
+	/* Check to see if the locale is a valid one, if not, use en_US as a fallback */
 	if ( !in_array( $locale, $edd_paytrail_valid_locales ) ) {
 		$locale = 'en_US';
 	}
