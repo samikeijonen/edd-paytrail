@@ -22,11 +22,11 @@ function edd_paytrail_add_image( $gateways ) {
 	
 	/* Use test credentials if test mode is on. */
 	if( edd_is_test_mode() ) {
-		$paytrail_merchant_id = $edd_options['paytrail_test_merchant_id'];
-		$paytrail_merchant_secret = $edd_options['paytrail_test_merchant_secret'];
+		$paytrail_merchant_id = $edd_options['edd_paytrail_test_merchant_id'];
+		$paytrail_merchant_secret = $edd_options['edd_paytrail_test_merchant_secret'];
 	} else {
-		$paytrail_merchant_id = $edd_options['paytrail_merchant_id'];
-		$paytrail_merchant_secret = $edd_options['paytrail_merchant_secret'];
+		$paytrail_merchant_id = $edd_options['edd_paytrail_merchant_id'];
+		$paytrail_merchant_secret = $edd_options['edd_paytrail_merchant_secret'];
 	}
 	
 	/* Combine merchant id and merchant secret. @link: http://docs.paytrail.com/files/method-images-api-fi.pdf. */
@@ -45,7 +45,7 @@ function edd_paytrail_add_image( $gateways ) {
 	?>
 	<fieldset id="edd_paytrail_image">
 		<span><legend><?php echo apply_filters( 'edd_paytrail_checkout_before_image_text', __( 'You can use Paytrail account or finnish banks.', 'edd-paytrail' ) ); ?></legend></span>
-		<?php echo '<p><img src="https://img.verkkomaksut.fi/index.svm?id=' . $paytrail_merchant_id . '&type=' . $image_args['type'] . '&cols=' . $image_args['cols'] . '&text=' . $image_args['text'] . '&auth=' . $auth_code . '" alt="' . _x( 'Paytrail', 'Alt tag for Paytrail image', 'edd-paytrail' ) . '" title="' . _x( 'Paytrail', 'Title tag for Paytrail image', 'edd-paytrail' ) . '"/></p>'; ?>
+		<?php echo '<p><img src="https://img.verkkomaksut.fi/index.svm?id=' . esc_attr( $paytrail_merchant_id ) . '&type=' . esc_attr( $image_args['type'] ) . '&cols=' . absint( $image_args['cols'] ) . '&text=' . absint( $image_args['text'] ) . '&auth=' . esc_attr( $auth_code ) . '" alt="' . _x( 'Paytrail', 'Alt tag for Paytrail image', 'edd-paytrail' ) . '" title="' . _x( 'Paytrail', 'Title tag for Paytrail image', 'edd-paytrail' ) . '"/></p>'; ?>
 	</fieldset>
 	<?php
 	
