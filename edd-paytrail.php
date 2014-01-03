@@ -3,7 +3,7 @@
 * Plugin Name: EDD Paytrail Gateway
 * Plugin URI: https://foxnet-themes.fi/downloads/edd-paytrail/
 * Description: Adds Paytrail payment gateway to Easy Digital Downloads plugin 
-* Version: 1.0
+* Version: 1.0.0
 * Author: Sami Keijonen
 * Author URI: https://foxnet-themes.fi
 * Text Domain: edd-paytrail
@@ -17,7 +17,7 @@
 * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 *
 * @package EDD Paytrail Gateway
-* @version 1.0
+* @version 1.0.0
 * @author Sami Keijonen <sami.keijonen@foxnet.fi>
 * @copyright Copyright (c) 2013, Sami Keijonen
 * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -49,7 +49,7 @@ final class EDD_PAYTRAIL {
 			include( dirname( __FILE__ ) . '/includes/EDD_License_Handler.php' );
 		
 		/*  Instantiate the licensing / updater. Must be placed in the main plugin file */
-		$license = new EDD_License( __FILE__, 'Paytrail Payment Gateway', '1.0', 'Sami Keijonen', null, 'http://localhost/foxnet-themes-shop' );
+		$license = new EDD_License( __FILE__, 'Paytrail Payment Gateway', '1.0.0', 'Sami Keijonen', null, 'http://foxnet-themes.fi' );
 
 		/* Set the constants needed by the plugin. */
 		add_action( 'plugins_loaded', array( $this, 'constants' ), 1 );
@@ -85,7 +85,7 @@ final class EDD_PAYTRAIL {
 
 		/* For Licensing. */
 		if ( ! defined( 'EDD_PAYTRAIL_STORE_URL' ) ) {
-			define( 'EDD_PAYTRAIL_STORE_URL', 'http://localhost/foxnet-themes-shop' );
+			define( 'EDD_PAYTRAIL_STORE_URL', 'http://foxnet-themes.fi' );
 		}
 
 		if ( ! defined( 'EDD_PAYTRAIL_STORE_NAME' ) ) {
