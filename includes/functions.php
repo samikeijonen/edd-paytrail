@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Register Paytrail payment gateway.
  *
  * @access      public
- * @since       1.0
+ * @since       1.0.0
  * @return      array
  */
 function edd_paytrail_register_gateway( $gateways ) {
@@ -24,7 +24,7 @@ add_filter( 'edd_payment_gateways', 'edd_paytrail_register_gateway' );
  * Process Paytrail submission.
  *
  * @access      public
- * @since       1.0
+ * @since       1.0.0
  * @return      void
  */
 function edd_paytrail_process_paytrail_payment( $purchase_data ) {
@@ -96,12 +96,14 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 		} else {
 			
 			/* Payment could not be recorded. */
-			if( $payment_record )
-				edd_set_error( 'authorize_error', __( 'Error: your payment could not be recorded. Please try again', 'edd-paytrail' ) );
+			if( $payment_record ) {
+				edd_set_error( 'authorize_error', __( 'Your payment could not be recorded. Please try again.', 'edd-paytrail' ) );
+			}
 			
 			/* Use EUR with Paytrail. */
-			if( 'EUR' !== $edd_options['currency'] )
-				edd_set_error( 'currency_error', __( 'Error: Paytrail only accepts EUR as currency. Contact the site admin.', 'edd-paytrail' ) );
+			if( 'EUR' !== $edd_options['currency'] ) {
+				edd_set_error( 'currency_error', __( 'Paytrail only accepts EUR as currency. Contact the site admin.', 'edd-paytrail' ) );
+			}
 			
 			/* Send back to checkout. */
 			edd_send_back_to_checkout( '?payment-mode=' . $purchase_data['post_data']['edd-gateway'] );			
@@ -118,7 +120,7 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 		
 		/* Order number and total price. */
 		$order_number = $purchase_data['purchase_key']; // Use distinguished order number
-		$price = $purchase_data['price'];              // Total (incl. VAT)
+		$price = $purchase_data['price'];               // Total (incl. VAT)
 		
 		/* If site owner wants to show finnish address fields then send more info in Paytrail. */
 		if ( edd_paytrail_show_extra_address_fields() ) {
@@ -208,7 +210,7 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 			
 		} else {
 		
-			/* Payment creation without adddress and product info. */
+			/* Payment creation without address and product info. */
 			$payment = new Verkkomaksut_Module_Rest_Payment_S1( $order_number, $urlset, $price );			
 		
 		}
@@ -224,7 +226,7 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 		catch( Verkkomaksut_Exception $e ) {
 			// processing the error
 			// Error description available $e->getMessage()
-			edd_set_error( 'authorize_error', __( 'Error: we could not create your payment to Paytrail. Please try again', 'edd-paytrail' ) );
+			edd_set_error( 'authorize_error', __( 'We could not create your payment to Paytrail. Please try again', 'edd-paytrail' ) );
 			edd_send_back_to_checkout( '?payment-mode=' . $purchase_data['post_data']['edd-gateway'] );
 		}
 		
@@ -242,7 +244,7 @@ add_action( 'edd_gateway_paytrail', 'edd_paytrail_process_paytrail_payment' );
 /**
  * Confirm and check that the Paytrail payment was valid.
  *
- * @since  1.0
+ * @since  1.0.0
  * @return void
  */
 function edd_paytrail_confirm_payment() {
