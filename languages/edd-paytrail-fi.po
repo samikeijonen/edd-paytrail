@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EDD Paytrail Gateway 1.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/edd-paytrail\n"
-"POT-Creation-Date: 2014-01-03 14:32:20+00:00\n"
-"PO-Revision-Date: 2014-01-03 16:34+0200\n"
+"POT-Creation-Date: 2014-01-05 19:43:44+00:00\n"
+"PO-Revision-Date: 2014-01-05 21:44+0200\n"
 "Last-Translator: Sami Keijonen <sami.keijonen@foxnet.fi>\n"
 "Language-Team: Foxnet <sami.keijonen@foxnet.fi>\n"
 "Language: fi\n"
@@ -14,14 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.6.3\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-
-#: includes/EDD_License_Handler.php:126
-msgid "%1$s License Key"
-msgstr "%1$s Licenssiavain"
-
-#: includes/EDD_License_Handler.php:256
-msgid "Deactivate License"
-msgstr "Poista lisenssiavain käytöstä"
 
 #: includes/address-info.php:21
 msgid "Billing Details"
@@ -96,21 +88,20 @@ msgid "Status changed to Pending"
 msgstr "Tila muutettu vireillä olevaksi"
 
 #: includes/functions.php:100
-msgid "Error: your payment could not be recorded. Please try again"
-msgstr ""
-"Virhe: Emme onnistuneet tallentamaan maksua. Ole hyvä ja kokeile uudelleen."
+msgid "Your payment could not be recorded. Please try again."
+msgstr "Emme onnistuneet tallentamaan maksua. Ole hyvä ja kokeile uudelleen."
 
 #: includes/functions.php:104
-msgid "Error: Paytrail only accepts EUR as currency. Contact the site admin."
+msgid "Paytrail only accepts EUR as currency. Contact the site admin."
 msgstr ""
-"Virhe: Paytrail hyväksyy vain eurot maksun yhteydessä. Ota yhteys sivun "
+"Paytrail hyväksyy vain eurot maksun yhteydessä. Ota yhteys sivun "
 "ylläpitäjään."
 
 #: includes/functions.php:227
-msgid "Error: we could not create your payment to Paytrail. Please try again"
+msgid "We could not create your payment to Paytrail. Please try again"
 msgstr ""
-"Virhe: Emme onnistuneet luomaan maksua Paytrail-maksulle. Ole hyvä ja "
-"kokeile uudelleen."
+"Emme onnistuneet luomaan maksua Paytrail-maksulle. Ole hyvä ja kokeile "
+"uudelleen."
 
 #: includes/functions.php:276
 msgid "Paytrail order number: %s"

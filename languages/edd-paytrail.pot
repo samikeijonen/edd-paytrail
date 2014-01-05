@@ -4,21 +4,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EDD Paytrail Gateway 1.0.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/edd-paytrail\n"
-"POT-Creation-Date: 2014-01-03 14:32:20+00:00\n"
+"POT-Creation-Date: 2014-01-05 19:43:44+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-
-#: includes/EDD_License_Handler.php:126
-msgid "%1$s License Key"
-msgstr ""
-
-#: includes/EDD_License_Handler.php:256
-msgid "Deactivate License"
-msgstr ""
 
 #: includes/address-info.php:21
 msgid "Billing Details"
@@ -93,15 +85,15 @@ msgid "Status changed to Pending"
 msgstr ""
 
 #: includes/functions.php:100
-msgid "Error: your payment could not be recorded. Please try again"
+msgid "Your payment could not be recorded. Please try again."
 msgstr ""
 
 #: includes/functions.php:104
-msgid "Error: Paytrail only accepts EUR as currency. Contact the site admin."
+msgid "Paytrail only accepts EUR as currency. Contact the site admin."
 msgstr ""
 
 #: includes/functions.php:227
-msgid "Error: we could not create your payment to Paytrail. Please try again"
+msgid "We could not create your payment to Paytrail. Please try again"
 msgstr ""
 
 #: includes/functions.php:276
