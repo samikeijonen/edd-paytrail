@@ -19,7 +19,7 @@
 * @package EDD Paytrail Gateway
 * @version 1.0.0
 * @author Sami Keijonen <sami.keijonen@foxnet.fi>
-* @copyright Copyright (c) 2013, Sami Keijonen
+* @copyright Copyright (c) 2014, Sami Keijonen
 * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 
@@ -31,7 +31,7 @@ final class EDD_PAYTRAIL {
 	/**
 	 * Holds the instances of this class.
 	 *
-	 * @since  1.0
+	 * @since  1.0.0
 	 * @access private
 	 * @var    object
 	 */
@@ -40,17 +40,15 @@ final class EDD_PAYTRAIL {
 	/**
 	* PHP5 constructor method.
 	*
-	* @since 1.0
+	* @since 1.0.0
 	*/
 	public function __construct() {
-	
-		/* Load the EDD license handler only if not already loaded. Must be placed in the main plugin file */
-		if( ! class_exists( 'EDD_License' ) )
-			include( dirname( __FILE__ ) . '/includes/EDD_License_Handler.php' );
 		
-		/*  Instantiate the licensing / updater. Must be placed in the main plugin file */
-		$license = new EDD_License( __FILE__, 'Paytrail Payment Gateway', '1.0.0', 'Sami Keijonen', null, 'http://foxnet-themes.fi' );
-
+		/*  Instantiate the licensing / updater. Must be placed in the main plugin file. */
+		if( class_exists( 'EDD_License' ) ) {
+			$license = new EDD_License( __FILE__, 'Paytrail Payment Gateway', '1.0.0', 'Sami Keijonen', null, 'http://foxnet-themes.fi' );
+		}
+		
 		/* Set the constants needed by the plugin. */
 		add_action( 'plugins_loaded', array( $this, 'constants' ), 1 );
 
@@ -65,7 +63,7 @@ final class EDD_PAYTRAIL {
 	/**
 	* Defines constants used by the plugin.
 	*
-	* @since 1.0
+	* @since 1.0.0
 	*/
 	public function constants() {
 
@@ -80,7 +78,7 @@ final class EDD_PAYTRAIL {
 		
 		/* Define Plugin Version. */
 		if ( ! defined( 'EDD_PAYTRAIL_VERSION' ) ) {
-			define( 'EDD_PAYTRAIL_VERSION', '1.0' );
+			define( 'EDD_PAYTRAIL_VERSION', '1.0.0' );
 		}
 
 		/* For Licensing. */
@@ -97,7 +95,7 @@ final class EDD_PAYTRAIL {
 	/**
 	* Load the translation of the plugin.
 	*
-	* @since 1.0
+	* @since 1.0.0
 	*/
 	public function i18n() {
 	
@@ -105,6 +103,7 @@ final class EDD_PAYTRAIL {
 		$domain = 'edd-paytrail';
 		$locale = apply_filters( 'edd_paytrail_locale', get_locale(), $domain );
 		
+		/* You can put custom translation files in wp-content/languages/edd-paytrail folder. */
 		load_textdomain( $domain, trailingslashit( WP_LANG_DIR ) . $domain . '/' . $domain . '-' . $locale . '.mo' );
 		load_plugin_textdomain( 'edd-paytrail', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
@@ -113,7 +112,7 @@ final class EDD_PAYTRAIL {
 	/**
 	* Loads the initial files needed by the plugin.
 	*
-	* @since 1.0
+	* @since 1.0.0
 	*/
 	public function includes() {
 
@@ -129,15 +128,16 @@ final class EDD_PAYTRAIL {
 	/**
 	 * Returns the instance.
 	 *
-	 * @since  1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return object
 	 */
 	public static function get_instance() {
 
-		if ( !self::$instance )
+		if ( !self::$instance ) {
 			self::$instance = new self;
-
+		}
+		
 		return self::$instance;
 	}
 
