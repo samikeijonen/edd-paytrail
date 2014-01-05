@@ -3,7 +3,7 @@
  * Add Paytrail image to checkout page.
  *
  * @access      public
- * @since       1.0
+ * @since       1.0.0
  * @return      string
  */
 function edd_paytrail_add_image( $gateways ) {
