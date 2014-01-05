@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Check if site owner have checked to show extra user info.
  *
  * @access      public
- * @since       1.0
+ * @since       1.0.0
  * @return      boolean
  */
 function edd_paytrail_show_extra_user_info() {
@@ -22,7 +22,7 @@ function edd_paytrail_show_extra_user_info() {
  * Check if site owner have checked to show address fields.
  *
  * @access      public
- * @since       1.0
+ * @since       1.0.0
  * @return      boolean
  */
 function edd_paytrail_show_extra_address_fields() {
@@ -37,7 +37,7 @@ function edd_paytrail_show_extra_address_fields() {
  * Register the paytrail.fi gateway settings
  *
  * @access      public
- * @since       1.0
+ * @since       1.0.0
  * @param 		$settings array the existing plugin settings
  * @return      array
  */
@@ -90,7 +90,7 @@ add_filter( 'edd_settings_gateways', 'edd_paytrail_gateways_settings' );
  * Registers the new options in Extensions.
  *
  * @access      public
- * @since       1.0
+ * @since       1.0.0
  * @param 		$settings array the existing plugin settings
  * @return      array
 */
