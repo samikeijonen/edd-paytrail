@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Add phone number and company name to personal info.
  *
  * @access      public
- * @since       1.0
+ * @since       1.0.0
  */
 function edd_paytrail_custom_checkout_fields() { 
 	
@@ -37,7 +37,7 @@ add_action( 'edd_purchase_form_user_info', 'edd_paytrail_custom_checkout_fields'
  * Store the custom field data (phone and company) in the payment meta.
  *
  * @access      public
- * @since       1.0
+ * @since       1.0.0
  */
 function edd_paytrail_store_custom_fields( $payment_meta ) {
 
@@ -57,7 +57,7 @@ add_filter( 'edd_payment_meta', 'edd_paytrail_store_custom_fields' );
  * Show the custom fields phone and company in the "View Order Details" popup.
  *
  * @access      public
- * @since       1.0
+ * @since       1.0.0
  */
 function edd_paytrail_purchase_details( $payment_meta, $user_info ) {
 
