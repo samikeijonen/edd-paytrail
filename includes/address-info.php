@@ -3,7 +3,7 @@
  * Add own address form.
  *
  * @access private
- * @since 1.0
+ * @since 1.0.0
  */
 function edd_paytrail_address_fields() {
 
@@ -78,5 +78,25 @@ if ( 'paytrail' == edd_get_chosen_gateway() && edd_paytrail_show_extra_address_f
 	add_action( 'edd_purchase_form_after_cc_form', 'edd_paytrail_address_fields', 999 ); // Add own address fields.
 }
 add_action( 'edd_paytrail_cc_form', '__return_false' ); // Remove credit card info from paytrail gateway.
+
+/**
+ * Remove card state from from required address fields.
+ *
+ * @access      private
+ * @since       1.0.0
+ * @return      array
+ */
+function edd_paytrail_remove_required_fields( $required_fields ) {
+
+	/* If paytrail is chosen payment gateway and use finnish address field, remove card_state. It doesn't even exists in address fields. */
+	if ( 'paytrail' == edd_get_chosen_gateway() && edd_paytrail_show_extra_address_fields() ) {
+		unset( $required_fields['card_state'] );
+	}
+
+	/* Return required fields. */
+	return $required_fields;
+
+}
+add_filter( 'edd_purchase_form_required_fields', 'edd_paytrail_remove_required_fields' );
 
 ?>
