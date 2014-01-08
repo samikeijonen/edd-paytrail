@@ -1,9 +1,14 @@
 <?php
+
+/* Exit if accessed directly. */
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
  * Add own address form.
  *
- * @access private
- * @since 1.0.0
+ * @access      private
+ * @since       1.0.0
+ * @return      void
  */
 function edd_paytrail_address_fields() {
 
@@ -23,7 +28,9 @@ function edd_paytrail_address_fields() {
 		<p id="edd-card-address-wrap">
 			<label for="card_address" class="edd-label">
 				<?php _e( 'Billing Address', 'edd-paytrail' ); ?>
-				<span class="edd-required-indicator">*</span>
+				<?php if( edd_field_is_required( 'card_address' ) ) { ?>
+					<span class="edd-required-indicator">*</span>
+				<?php } ?>
 			</label>
 			<span class="edd-description"><?php _e( 'This is your billing address.', 'edd-paytrail' ); ?></span>
 			<input type="text" id="card_address" name="card_address" class="card-address edd-input required" placeholder="<?php _e( 'Address line', 'edd-paytrail' ); ?>" value="<?php echo $line1; ?>" />
@@ -31,7 +38,9 @@ function edd_paytrail_address_fields() {
 		<p id="edd-card-zip-wrap">
 			<label for="card_zip" class="edd-label">
 				<?php _e( 'Billing Zip / Postal Code', 'edd-paytrail' ); ?>
-				<span class="edd-required-indicator">*</span>
+				<?php if( edd_field_is_required( 'card_zip' ) ) { ?>
+					<span class="edd-required-indicator">*</span>
+				<?php } ?>
 			</label>
 			<span class="edd-description"><?php _e( 'The zip or postal code for your billing address.', 'edd-paytrail' ); ?></span>
 			<input type="text" size="4" name="card_zip" class="card-zip edd-input required" placeholder="<?php _e( 'Zip / Postal code', 'edd-paytrail' ); ?>" value="<?php echo $zip; ?>" />
@@ -39,7 +48,9 @@ function edd_paytrail_address_fields() {
 		<p id="edd-card-city-wrap">
 			<label for="card_city" class="edd-label">
 				<?php _e( 'Billing City', 'edd-paytrail' ); ?>
-				<span class="edd-required-indicator">*</span>
+				<?php if( edd_field_is_required( 'card_city' ) ) { ?>
+					<span class="edd-required-indicator">*</span>
+				<?php } ?>
 			</label>
 			<span class="edd-description"><?php _e( 'The city for your billing address.', 'edd-paytrail' ); ?></span>
 			<input type="text" id="card_city" name="card_city" class="card-city edd-input required" placeholder="<?php _e( 'City', 'edd-paytrail' ); ?>" value="<?php echo $city; ?>" />
@@ -47,7 +58,9 @@ function edd_paytrail_address_fields() {
 		<p id="edd-card-country-wrap">
 			<label for="billing_country" class="edd-label">
 				<?php _e( 'Billing Country', 'edd-paytrail' ); ?>
-				<span class="edd-required-indicator">*</span>
+				<?php if( edd_field_is_required( 'billing_country' ) ) { ?>
+					<span class="edd-required-indicator">*</span>
+				<?php } ?>
 			</label>
 			<span class="edd-description"><?php _e( 'The country for your billing address.', 'edd-paytrail' ); ?></span>
 			<select id="billing_country" name="billing_country" id="billing_country" class="billing_country edd-select required">
@@ -80,23 +93,55 @@ if ( 'paytrail' == edd_get_chosen_gateway() && edd_paytrail_show_extra_address_f
 add_action( 'edd_paytrail_cc_form', '__return_false' ); // Remove credit card info from paytrail gateway.
 
 /**
- * Remove card state from from required address fields.
+ * Remove card state from required address fields. Also add last name and address as required.
  *
  * @access      private
  * @since       1.0.0
  * @return      array
  */
-function edd_paytrail_remove_required_fields( $required_fields ) {
+function edd_paytrail_required_fields( $required_fields ) {
 
-	/* If paytrail is chosen payment gateway and use finnish address field, remove card_state. It doesn't even exists in address fields. */
+	/* If paytrail is chosen payment gateway and use finnish address field, remove card_state. And add last name. */
 	if ( 'paytrail' == edd_get_chosen_gateway() && edd_paytrail_show_extra_address_fields() ) {
+		
+		/* Unset card_state from required fields. */
 		unset( $required_fields['card_state'] );
+	
+		/* In this case we also need to make last name and address required because they needs to be send to Paytrail. */
+		$required_fields['edd_last'] = array(   
+			'error_id'      => 'invalid_last_name',
+			'error_message' => __( 'Please enter your last name.', 'edd-paytrail' )
+		);
+		$required_fields['card_address'] = array(   
+			'error_id'      => 'invalid_card_address',
+			'error_message' => __( 'Please enter your address.', 'edd-paytrail' )
+		);
+	
 	}
 
 	/* Return required fields. */
 	return $required_fields;
 
 }
-add_filter( 'edd_purchase_form_required_fields', 'edd_paytrail_remove_required_fields' );
+add_filter( 'edd_purchase_form_required_fields', 'edd_paytrail_required_fields' );
+
+/**
+ * Address fields should be required when finnish address fields are selected.
+ *
+ * @access      private
+ * @since       1.0.0
+ * @return      void
+ */
+function edd_paytrail_require_address_fields( $required_address_fields ) {
+
+	/* If paytrail is chosen payment gateway and use finnish address field, all address fields are required. */
+	if ( 'paytrail' == edd_get_chosen_gateway() && edd_paytrail_show_extra_address_fields() ) {
+		return ( $required_address_fields ) || edd_paytrail_show_extra_address_fields();
+	} else {
+		return $required_address_fields;
+	}
+
+}
+add_filter( 'edd_require_billing_address', 'edd_paytrail_require_address_fields' );
 
 ?>
