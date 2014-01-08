@@ -40,13 +40,15 @@ final class EDD_PAYTRAIL {
 	/**
 	* PHP5 constructor method.
 	*
-	* @since 1.0.0
+	* @since  1.0.0
+	* @access public
+	* @var    void
 	*/
 	public function __construct() {
 		
 		/*  Instantiate the licensing / updater. Must be placed in the main plugin file. */
 		if( class_exists( 'EDD_License' ) ) {
-			$license = new EDD_License( __FILE__, 'Paytrail Payment Gateway', '1.0.0', 'Sami Keijonen', null, 'http://foxnet-themes.fi' );
+			$license = new EDD_License( __FILE__, 'Paytrail Payment Gateway', '1.0.0', 'Sami Keijonen', null, 'http://foxnet-themes.fi/' );
 		}
 		
 		/* Set the constants needed by the plugin. */
@@ -118,7 +120,6 @@ final class EDD_PAYTRAIL {
 
 		/* Load necessary files. */
 		require_once( EDD_PAYTRAIL_INCLUDES . 'settings.php' );
-		require_once( EDD_PAYTRAIL_INCLUDES . 'user-info.php' );
 		require_once( EDD_PAYTRAIL_INCLUDES . 'address-info.php' );
 		require_once( EDD_PAYTRAIL_INCLUDES . 'image-info.php' );
 		require_once( EDD_PAYTRAIL_INCLUDES . 'functions.php' );
