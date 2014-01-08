@@ -1,4 +1,8 @@
 <?php
+
+/* Exit if accessed directly. */
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
  * Add Paytrail image to checkout page.
  *
