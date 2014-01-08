@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EDD Paytrail Gateway 1.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/edd-paytrail\n"
-"POT-Creation-Date: 2014-01-05 19:43:44+00:00\n"
-"PO-Revision-Date: 2014-01-05 21:44+0200\n"
+"POT-Creation-Date: 2014-01-08 16:01:57+00:00\n"
+"PO-Revision-Date: 2014-01-08 18:03+0200\n"
 "Last-Translator: Sami Keijonen <sami.keijonen@foxnet.fi>\n"
 "Language-Team: Foxnet <sami.keijonen@foxnet.fi>\n"
 "Language: fi\n"
@@ -15,203 +15,181 @@ msgstr ""
 "X-Generator: Poedit 1.6.3\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: includes/address-info.php:21
+#: includes/address-info.php:26
 msgid "Billing Details"
 msgstr "Osoitetiedot"
 
-#: includes/address-info.php:25
+#: includes/address-info.php:30
 msgid "Billing Address"
 msgstr "Osoite"
 
-#: includes/address-info.php:28
+#: includes/address-info.php:35
 msgid "This is your billing address."
 msgstr "Kirjoita osoitteesi."
 
-#: includes/address-info.php:29
+#: includes/address-info.php:36
 msgid "Address line"
 msgstr "Osoiterivi"
 
-#: includes/address-info.php:33
+#: includes/address-info.php:40
 msgid "Billing Zip / Postal Code"
 msgstr "Postinumero"
 
-#: includes/address-info.php:36
+#: includes/address-info.php:45
 msgid "The zip or postal code for your billing address."
 msgstr "Kirjoita postinumero."
 
-#: includes/address-info.php:37
+#: includes/address-info.php:46
 msgid "Zip / Postal code"
 msgstr "Postinumero"
 
-#: includes/address-info.php:41
+#: includes/address-info.php:50
 msgid "Billing City"
 msgstr "Postitoimipaikka"
 
-#: includes/address-info.php:44
+#: includes/address-info.php:55
 msgid "The city for your billing address."
 msgstr "Kirjoita postitoimipaikka."
 
-#: includes/address-info.php:45
+#: includes/address-info.php:56
 msgid "City"
 msgstr "Postitoimipaikka"
 
-#: includes/address-info.php:49
+#: includes/address-info.php:60
 msgid "Billing Country"
 msgstr "Maa"
 
-#: includes/address-info.php:52
+#: includes/address-info.php:65
 msgid "The country for your billing address."
 msgstr "Valitse maa."
+
+#: includes/address-info.php:113
+msgid "Please enter your last name."
+msgstr "Kirjoita sukunimi."
+
+#: includes/address-info.php:117
+msgid "Please enter your address."
+msgstr "Kirjoita osoite."
 
 #: includes/functions.php:16
 msgid "Paytrail"
 msgstr "Paytrail"
 
-#: includes/functions.php:51
-msgid "You must enter the address"
-msgstr "Kirjoita osoite"
-
-#: includes/functions.php:55
-msgid "You must enter the zip code"
-msgstr "Kirjoita postinumero"
-
-#: includes/functions.php:59
-msgid "You must enter the city"
-msgstr "Kirjoita postitoimipaikka"
-
-#: includes/functions.php:63
-msgid "You must enter the country"
-msgstr "Valitse maa"
-
-#: includes/functions.php:94
+#: includes/functions.php:72
 msgid "Status changed to Pending"
 msgstr "Tila muutettu vireillä olevaksi"
 
-#: includes/functions.php:100
+#: includes/functions.php:78
 msgid "Your payment could not be recorded. Please try again."
 msgstr "Emme onnistuneet tallentamaan maksua. Ole hyvä ja kokeile uudelleen."
 
-#: includes/functions.php:104
+#: includes/functions.php:83
 msgid "Paytrail only accepts EUR as currency. Contact the site admin."
 msgstr ""
 "Paytrail hyväksyy vain eurot maksun yhteydessä. Ota yhteys sivun "
 "ylläpitäjään."
 
-#: includes/functions.php:227
+#: includes/functions.php:194
 msgid "We could not create your payment to Paytrail. Please try again"
 msgstr ""
 "Emme onnistuneet luomaan maksua Paytrail-maksulle. Ole hyvä ja kokeile "
 "uudelleen."
 
-#: includes/functions.php:276
+#: includes/functions.php:243
 msgid "Paytrail order number: %s"
 msgstr "Paytrail tilausnumero: %s"
 
-#: includes/functions.php:282
+#: includes/functions.php:249
 msgid "There was possible payment fraud attempt."
 msgstr "Joku yritti mahdollisesti huijata."
 
-#: includes/functions.php:309
+#: includes/functions.php:276
 msgid ""
 "Note: You need to use EUR currency for Paytrail to work. Go to %ssettings%s."
 msgstr ""
 "Huom! Valutaan tulee olla Euroina, jotta Paytrail toimii. Mene %sasetuksiin"
 "%s."
 
-#: includes/image-info.php:47
+#: includes/image-info.php:51
 msgid "You can use Paytrail account or finnish banks."
 msgstr ""
 "Voit käyttää maksaessasi Paytrail-tiliä tai suomalaisia verkkopankkeja."
 
-#: includes/image-info.php:48
+#: includes/image-info.php:52
 msgctxt "Alt tag for Paytrail image"
 msgid "Paytrail"
 msgstr "Paytrail"
 
-#: includes/image-info.php:48
+#: includes/image-info.php:52
 msgctxt "Title tag for Paytrail image"
 msgid "Paytrail"
 msgstr "Paytrail"
 
-#: includes/settings.php:50
+#: includes/settings.php:35
 msgctxt "Paytrail settings in Gateways page"
 msgid "Paytrail Settings"
 msgstr "Paytrail asetukset"
 
-#: includes/settings.php:51
+#: includes/settings.php:36
 msgid "Configure the Paytrail settings"
 msgstr "Muokkaa Paytrailin asetuksia"
 
-#: includes/settings.php:56
+#: includes/settings.php:41
 msgid "Merchant ID"
 msgstr "Kauppiastunnus"
 
-#: includes/settings.php:57
+#: includes/settings.php:42
 msgid ""
 "Enter your Paytrail Merchant ID. This is needed in order to take payment."
 msgstr ""
 "Kirjoita Paytrailin kauppiastunnus. Tarvitset tämän, jotta voit maksaa "
 "Paytrail-maksupalvelun kautta."
 
-#: includes/settings.php:63
+#: includes/settings.php:48
 msgid "Merchant Secret"
 msgstr "Kauppiasvarmenne"
 
-#: includes/settings.php:64
+#: includes/settings.php:49
 msgid ""
 "Enter your Paytrail Merchant Secret. This is needed in order to take payment."
 msgstr ""
 "Kirjoita Paytrailin kauppiasvarmenne. Tarvitset tämän, jotta voit maksaa "
 "Paytrail-maksupalvelun kautta."
 
-#: includes/settings.php:70
+#: includes/settings.php:55
 msgid "Test Merchant ID"
 msgstr "Testikauppiastunnus"
 
-#: includes/settings.php:71
+#: includes/settings.php:56
 msgid "Enter your Paytrail test Merchant ID."
 msgstr "Kirjoita Paytrailin testikauppiastunnus."
 
-#: includes/settings.php:77
+#: includes/settings.php:62
 msgid "Test Merchant Secret"
 msgstr "Testikauppiasvarmenne"
 
-#: includes/settings.php:78
+#: includes/settings.php:63
 msgid "Enter your Paytrail test Merchant Secret."
 msgstr "Kirjoita Paytrailin testikauppiasvarmenne."
 
-#: includes/settings.php:102
+#: includes/settings.php:87
 msgctxt "Paytrail settings in Extensions page"
 msgid "Paytrail Settings"
 msgstr "Paytrail asetukset"
 
-#: includes/settings.php:109
+#: includes/settings.php:94
 msgid "Show Paytrail image"
 msgstr "Näytä Paytrail-kuva"
 
-#: includes/settings.php:110
+#: includes/settings.php:95
 msgid "Check this if you want to show Paytrail image on checkout page."
 msgstr "Valitse tämä, jos haluat näyttää Paytrail-kuvan maksusivulla."
 
-#: includes/settings.php:115
-msgid "Additional user info"
-msgstr "Käyttäjän lisätiedot"
-
-#: includes/settings.php:116
-msgid ""
-"Check this if you want to show phone number and company name fields on "
-"checkout page. This info is also send to Paytrail account if you use Finnish "
-"address fields below."
-msgstr ""
-"Valitse tämä, jos haluat näyttää puhelinnumerokentän ja yrityskentän "
-"maksusivulla. Nämä tiedot lähetetään Paytrail-tilille, jos valitset alla "
-"olevan vaihtoehdon näyttää suomalaiset osoiterivit."
-
-#: includes/settings.php:121
+#: includes/settings.php:100
 msgid "Finnish address fields"
 msgstr "Suomalainen osoiterivi"
 
-#: includes/settings.php:122
+#: includes/settings.php:101
 msgid ""
 "Check this if you want to show address fields like in Finland on checkout "
 "page. Address and product info is also send to Paytrail account in this case."
@@ -219,30 +197,6 @@ msgstr ""
 "Valitse tämä, jos haluat näyttää osoiterivit maksusivulla niinkuin Suomessa "
 "on tapana. Tässä tapauksessa osoitetiedot ja tuotteiden tiedot lähetetään "
 "Paytrail-tilille."
-
-#: includes/user-info.php:21 includes/user-info.php:23
-msgid "Phone Number"
-msgstr "Puhelinnumero"
-
-#: includes/user-info.php:22
-msgid "Enter your phone number."
-msgstr "Kirjoita puhelinnumero."
-
-#: includes/user-info.php:26 includes/user-info.php:28
-msgid "Company Name"
-msgstr "Yrityksen nimi"
-
-#: includes/user-info.php:27
-msgid "Enter the name of your company."
-msgstr "Kirjoita yrityksen nimi."
-
-#: includes/user-info.php:73
-msgid "Phone:"
-msgstr "Puhelin:"
-
-#: includes/user-info.php:74
-msgid "Company:"
-msgstr "Yritys:"
 
 #. Plugin Name of the plugin/theme
 msgid "EDD Paytrail Gateway"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EDD Paytrail Gateway 1.0.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/edd-paytrail\n"
-"POT-Creation-Date: 2014-01-05 19:43:44+00:00\n"
+"POT-Creation-Date: 2014-01-08 16:01:57+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,208 +12,168 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: includes/address-info.php:21
+#: includes/address-info.php:26
 msgid "Billing Details"
 msgstr ""
 
-#: includes/address-info.php:25
+#: includes/address-info.php:30
 msgid "Billing Address"
 msgstr ""
 
-#: includes/address-info.php:28
+#: includes/address-info.php:35
 msgid "This is your billing address."
 msgstr ""
 
-#: includes/address-info.php:29
+#: includes/address-info.php:36
 msgid "Address line"
 msgstr ""
 
-#: includes/address-info.php:33
+#: includes/address-info.php:40
 msgid "Billing Zip / Postal Code"
 msgstr ""
 
-#: includes/address-info.php:36
+#: includes/address-info.php:45
 msgid "The zip or postal code for your billing address."
 msgstr ""
 
-#: includes/address-info.php:37
+#: includes/address-info.php:46
 msgid "Zip / Postal code"
 msgstr ""
 
-#: includes/address-info.php:41
+#: includes/address-info.php:50
 msgid "Billing City"
 msgstr ""
 
-#: includes/address-info.php:44
+#: includes/address-info.php:55
 msgid "The city for your billing address."
 msgstr ""
 
-#: includes/address-info.php:45
+#: includes/address-info.php:56
 msgid "City"
 msgstr ""
 
-#: includes/address-info.php:49
+#: includes/address-info.php:60
 msgid "Billing Country"
 msgstr ""
 
-#: includes/address-info.php:52
+#: includes/address-info.php:65
 msgid "The country for your billing address."
+msgstr ""
+
+#: includes/address-info.php:113
+msgid "Please enter your last name."
+msgstr ""
+
+#: includes/address-info.php:117
+msgid "Please enter your address."
 msgstr ""
 
 #: includes/functions.php:16
 msgid "Paytrail"
 msgstr ""
 
-#: includes/functions.php:51
-msgid "You must enter the address"
-msgstr ""
-
-#: includes/functions.php:55
-msgid "You must enter the zip code"
-msgstr ""
-
-#: includes/functions.php:59
-msgid "You must enter the city"
-msgstr ""
-
-#: includes/functions.php:63
-msgid "You must enter the country"
-msgstr ""
-
-#: includes/functions.php:94
+#: includes/functions.php:72
 msgid "Status changed to Pending"
 msgstr ""
 
-#: includes/functions.php:100
+#: includes/functions.php:78
 msgid "Your payment could not be recorded. Please try again."
 msgstr ""
 
-#: includes/functions.php:104
+#: includes/functions.php:83
 msgid "Paytrail only accepts EUR as currency. Contact the site admin."
 msgstr ""
 
-#: includes/functions.php:227
+#: includes/functions.php:194
 msgid "We could not create your payment to Paytrail. Please try again"
 msgstr ""
 
-#: includes/functions.php:276
+#: includes/functions.php:243
 msgid "Paytrail order number: %s"
 msgstr ""
 
-#: includes/functions.php:282
+#: includes/functions.php:249
 msgid "There was possible payment fraud attempt."
 msgstr ""
 
-#: includes/functions.php:309
+#: includes/functions.php:276
 msgid "Note: You need to use EUR currency for Paytrail to work. Go to %ssettings%s."
 msgstr ""
 
-#: includes/image-info.php:47
+#: includes/image-info.php:51
 msgid "You can use Paytrail account or finnish banks."
 msgstr ""
 
-#: includes/image-info.php:48
+#: includes/image-info.php:52
 msgctxt "Alt tag for Paytrail image"
 msgid "Paytrail"
 msgstr ""
 
-#: includes/image-info.php:48
+#: includes/image-info.php:52
 msgctxt "Title tag for Paytrail image"
 msgid "Paytrail"
 msgstr ""
 
-#: includes/settings.php:50
+#: includes/settings.php:35
 msgctxt "Paytrail settings in Gateways page"
 msgid "Paytrail Settings"
 msgstr ""
 
-#: includes/settings.php:51
+#: includes/settings.php:36
 msgid "Configure the Paytrail settings"
 msgstr ""
 
-#: includes/settings.php:56
+#: includes/settings.php:41
 msgid "Merchant ID"
 msgstr ""
 
-#: includes/settings.php:57
+#: includes/settings.php:42
 msgid "Enter your Paytrail Merchant ID. This is needed in order to take payment."
 msgstr ""
 
-#: includes/settings.php:63
+#: includes/settings.php:48
 msgid "Merchant Secret"
 msgstr ""
 
-#: includes/settings.php:64
+#: includes/settings.php:49
 msgid "Enter your Paytrail Merchant Secret. This is needed in order to take payment."
 msgstr ""
 
-#: includes/settings.php:70
+#: includes/settings.php:55
 msgid "Test Merchant ID"
 msgstr ""
 
-#: includes/settings.php:71
+#: includes/settings.php:56
 msgid "Enter your Paytrail test Merchant ID."
 msgstr ""
 
-#: includes/settings.php:77
+#: includes/settings.php:62
 msgid "Test Merchant Secret"
 msgstr ""
 
-#: includes/settings.php:78
+#: includes/settings.php:63
 msgid "Enter your Paytrail test Merchant Secret."
 msgstr ""
 
-#: includes/settings.php:102
+#: includes/settings.php:87
 msgctxt "Paytrail settings in Extensions page"
 msgid "Paytrail Settings"
 msgstr ""
 
-#: includes/settings.php:109
+#: includes/settings.php:94
 msgid "Show Paytrail image"
 msgstr ""
 
-#: includes/settings.php:110
+#: includes/settings.php:95
 msgid "Check this if you want to show Paytrail image on checkout page."
 msgstr ""
 
-#: includes/settings.php:115
-msgid "Additional user info"
-msgstr ""
-
-#: includes/settings.php:116
-msgid "Check this if you want to show phone number and company name fields on checkout page. This info is also send to Paytrail account if you use Finnish address fields below."
-msgstr ""
-
-#: includes/settings.php:121
+#: includes/settings.php:100
 msgid "Finnish address fields"
 msgstr ""
 
-#: includes/settings.php:122
+#: includes/settings.php:101
 msgid "Check this if you want to show address fields like in Finland on checkout page. Address and product info is also send to Paytrail account in this case."
-msgstr ""
-
-#: includes/user-info.php:21 includes/user-info.php:23
-msgid "Phone Number"
-msgstr ""
-
-#: includes/user-info.php:22
-msgid "Enter your phone number."
-msgstr ""
-
-#: includes/user-info.php:26 includes/user-info.php:28
-msgid "Company Name"
-msgstr ""
-
-#: includes/user-info.php:27
-msgid "Enter the name of your company."
-msgstr ""
-
-#: includes/user-info.php:73
-msgid "Phone:"
-msgstr ""
-
-#: includes/user-info.php:74
-msgid "Company:"
 msgstr ""
 #. Plugin Name of the plugin/theme
 msgid "EDD Paytrail Gateway"
