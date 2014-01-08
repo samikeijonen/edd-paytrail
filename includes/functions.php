@@ -42,28 +42,6 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 	
 	/* Load the paytrail module payment file. */
 	require_once( EDD_PAYTRAIL_INCLUDES . 'Verkkomaksut_Module_Rest.php' );
-	
-	/* Error validation when showing address fields. */
-	
-	if ( edd_paytrail_show_extra_address_fields() ) {
-	
-		if( !isset( $_POST['card_address'] ) || $_POST['card_address'] == '' ) {
-			edd_set_error( 'empty_card', __( 'You must enter the address', 'edd-paytrail' ) );
-		}
-
-		if( !isset( $_POST['card_zip'] ) || $_POST['card_zip'] == '' ) {
-			edd_set_error( 'empty_card_name', __( 'You must enter the zip code', 'edd-paytrail' ) );
-		}
-
-		if( !isset( $_POST['card_city'] ) || $_POST['card_city'] == '' ) {
-			edd_set_error( 'empty_month', __( 'You must enter the city', 'edd-paytrail' ) );
-		}
-
-		if( !isset( $_POST['billing_country'] ) || $_POST['billing_country'] == '' || $_POST['billing_country'] == '*' ) {
-			edd_set_error( 'empty_year', __( 'You must enter the country', 'edd-paytrail' ) );
-		}
-		
-	}
 
 	/* Get errors. */
 	$errors = edd_get_errors();
@@ -137,22 +115,6 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 			// Email
 			$email = $purchase_data['user_email'];
 		
-			if ( edd_paytrail_show_extra_user_info() ) {
-			
-				// Phone
-				$phone = $purchase_data['phone'];
-				// Company
-				$company = $purchase_data['company'];
-			
-			} else {
-		
-				// Phone
-				$phone = '';
-				// Company
-				$company = '';	
-			
-			}
-		
 			// Address
 			$addr = $card_info['card_address'];
 		
@@ -175,8 +137,8 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 				$city,      // city (postitoimipaikka in finnish)
 				$country,   // country (ISO-3166)
 				"",         // phone
-				$phone,     // cell phone
-				$company    // company name
+				"",         // cell phone
+				""          // company name
 			);
 			
 
@@ -195,6 +157,9 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 				/* Get product code if SKU is in use. */
 				if( edd_use_skus() ) {
 					$product_code = edd_get_download_sku( $item['id'] );
+				}
+				else {
+					$product_code = '';
 				}
 				
 				$payment->addProduct(
