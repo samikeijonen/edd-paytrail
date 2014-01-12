@@ -218,11 +218,11 @@ function edd_paytrail_confirm_payment() {
 	
 	/* Use test credentials if test mode is on. */
 	if( edd_is_test_mode() ) {
-		$paytrail_merchant_id = $edd_options['edd_paytrail_test_merchant_id'];
-		$paytrail_merchant_secret = $edd_options['edd_paytrail_test_merchant_secret'];
+		$paytrail_merchant_id = isset( $edd_options['edd_paytrail_test_merchant_id'] ) ? $edd_options['edd_paytrail_test_merchant_id'] : '';
+		$paytrail_merchant_secret = isset( $edd_options['edd_paytrail_test_merchant_secret'] ) ? $edd_options['edd_paytrail_test_merchant_secret'] : '';
 	} else {
-		$paytrail_merchant_id = $edd_options['edd_paytrail_merchant_id'];
-		$paytrail_merchant_secret = $edd_options['edd_paytrail_merchant_secret'];
+		$paytrail_merchant_id = isset( $edd_options['edd_paytrail_merchant_id'] ) ? $edd_options['edd_paytrail_merchant_id'] : '';
+		$paytrail_merchant_secret = isset ( $edd_options['edd_paytrail_merchant_secret'] ) ? $edd_options['edd_paytrail_merchant_secret'] : '';
 	}
 	
 	/* Check that we are on success page and payment id is set. After that check for valid payment. */
