@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: EDD, download, downloads, add-on, digital, checkout, paytrail
 Requires at least: 3.7
 Tested up to: 3.8
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,12 @@ that first. It enables Paytrail gateaway in your shop.
 I needed this feature and someone else might need it too.
 
 == Changelog ==
+
+= 1.0.1 =
+
+* Test for updates.
+* Fixed undefined notice.
+* Updated Paytrail image URL.
 
 = 1.0.0 =
 
