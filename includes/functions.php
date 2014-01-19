@@ -162,12 +162,19 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 					$product_code = '';
 				}
 				
+				/* Get tax rate. */
+				if( isset( $edd_options['tax_rate'] ) && !empty( $edd_options['tax_rate'] ) ) {
+					$paytrail_tax_rate = $edd_options['tax_rate'];
+				} else {
+					$paytrail_tax_rate = 24;
+				}
+				
 				$payment->addProduct(
 					$item['name'],                                 // product title
 					$product_code,                                 // product code
 					$item['quantity'],                             // product quantity
 					$item['price'],                                // product price (/apiece)
-					$edd_options['tax_rate'],                      // Tax percentage
+					$paytrail_tax_rate,                            // Tax percentage
 					"0.00",                                        // Discount percentage
 					Verkkomaksut_Module_Rest_Product::TYPE_NORMAL  // Product type			
 				);
@@ -191,7 +198,7 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 		catch( Verkkomaksut_Exception $e ) {
 			// processing the error
 			// Error description available $e->getMessage()
-			edd_set_error( 'authorize_error', __( 'We could not create your payment to Paytrail. Please try again', 'edd-paytrail' ) );
+			edd_set_error( 'authorize_error', __( 'We could not create your payment to Paytrail. Please try again.', 'edd-paytrail' ) );
 			edd_send_back_to_checkout( '?payment-mode=' . $purchase_data['post_data']['edd-gateway'] );
 		}
 		
