@@ -85,7 +85,7 @@ msgid "Paytrail only accepts EUR as currency. Contact the site admin."
 msgstr ""
 
 #: includes/functions.php:194
-msgid "We could not create your payment to Paytrail. Please try again"
+msgid "We could not create your payment to Paytrail. Please try again."
 msgstr ""
 
 #: includes/functions.php:243
