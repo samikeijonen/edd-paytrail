@@ -248,7 +248,8 @@ function edd_paytrail_confirm_payment() {
 			
 			/* Add transaction ID to payment notes. */
 			edd_insert_payment_note( absint( $_GET['confirm_payment_id'] ), sprintf( __( 'Paytrail order number: %s', 'edd-paytrail' ), esc_attr( $_GET['ORDER_NUMBER'] ) ) );
-			
+			//edd_set_payment_transaction_id( absint( $_GET['confirm_payment_id'] ), esc_attr( $_GET['ORDER_NUMBER'] ) );
+		
 		}
 		else {
 		
@@ -276,8 +277,9 @@ function edd_paytrail_admin_messages() {
 
 	global $typenow, $edd_options;
 	
-	if ( 'download' != $typenow )
+	if ( 'download' != $typenow ) {
 		return;
+	}
 
 	if ( current_user_can( 'manage_shop_settings' ) && 'EUR' !== $edd_options['currency'] && edd_is_gateway_active( 'paytrail' ) ) {
 		add_settings_error( 'edd-paytrail-notices', 'edd-payment-sent', sprintf( __( 'Note: You need to use EUR currency for Paytrail to work. Go to %ssettings%s.', 'edd-paytrail' ), '<a href="' . admin_url( 'edit.php?post_type=download&page=edd-settings' ) . '">', '</a>' ), 'updated' );
@@ -337,5 +339,3 @@ function edd_paytrail_send_to_transaction_failed_page() {
 	edd_die();
 	
 }
-
-?>
