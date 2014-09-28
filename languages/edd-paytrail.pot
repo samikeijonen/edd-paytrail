@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the EDD Paytrail Gateway package.
 msgid ""
 msgstr ""
-"Project-Id-Version: EDD Paytrail Gateway 1.0.0\n"
+"Project-Id-Version: EDD Paytrail Gateway 1.0.4\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/edd-paytrail\n"
-"POT-Creation-Date: 2014-01-08 16:01:57+00:00\n"
+"POT-Creation-Date: 2014-09-28 12:35:37+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -84,19 +84,19 @@ msgstr ""
 msgid "Paytrail only accepts EUR as currency. Contact the site admin."
 msgstr ""
 
-#: includes/functions.php:194
+#: includes/functions.php:201
 msgid "We could not create your payment to Paytrail. Please try again."
 msgstr ""
 
-#: includes/functions.php:243
+#: includes/functions.php:250
 msgid "Paytrail order number: %s"
 msgstr ""
 
-#: includes/functions.php:249
+#: includes/functions.php:257
 msgid "There was possible payment fraud attempt."
 msgstr ""
 
-#: includes/functions.php:276
+#: includes/functions.php:285
 msgid "Note: You need to use EUR currency for Paytrail to work. Go to %ssettings%s."
 msgstr ""
 
@@ -180,7 +180,7 @@ msgid "EDD Paytrail Gateway"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "https://foxnet-themes.fi/downloads/edd-paytrail/"
+msgid "https://foxland.fi/downloads/paytrail-payment-gateway/"
 msgstr ""
 
 #. Description of the plugin/theme
@@ -192,5 +192,5 @@ msgid "Sami Keijonen"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "https://foxnet-themes.fi"
+msgid "https://foxland.fi"
 msgstr ""
