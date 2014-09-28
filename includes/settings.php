@@ -107,5 +107,3 @@ function edd_paytrail_extensions_settings( $settings ) {
 
 }
 add_filter( 'edd_settings_extensions', 'edd_paytrail_extensions_settings' );
-
-?>

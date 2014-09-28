@@ -143,5 +143,3 @@ function edd_paytrail_require_address_fields( $required_address_fields ) {
 
 }
 add_filter( 'edd_require_billing_address', 'edd_paytrail_require_address_fields' );
-
-?>
