@@ -41,7 +41,7 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 	}
 	
 	/* Load the paytrail module payment file. */
-	require_once( EDD_PAYTRAIL_INCLUDES . 'Verkkomaksut_Module_Rest.php' );
+	require_once( EDD_PAYTRAIL_INCLUDES . 'Paytrail_Module_Rest.php' );
 
 	/* Get errors. */
 	$errors = edd_get_errors();
@@ -89,7 +89,7 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 		}	
 
 		/* An object is created to model all payment return urls. */
-		$urlset = new Verkkomaksut_Module_Rest_Urlset(
+		$urlset = new Paytrail_Module_Rest_Urlset(
 			add_query_arg( 'confirm_payment_id', $payment_record, edd_get_success_page_uri() ), // return url for successful payment
 			edd_get_failed_transaction_uri(),                                                   // return url for failed payment
 			edd_get_success_page_uri(),                                                         // url for payment confirmation from SV server
@@ -128,7 +128,7 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 			$country = $card_info['card_country'];
 		
 			/* Create contact for payment. This is sent to Paytrail account. */
-			$contact = new Verkkomaksut_Module_Rest_Contact(
+			$contact = new Paytrail_Module_Rest_Contact(
 				$name1,     // firstname
 				$name2,     // lastname
 				$email,     // email
@@ -143,7 +143,7 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 			
 
 			/* Payment creation. */
-			$payment = new Verkkomaksut_Module_Rest_Payment_E1( $order_number, $urlset, $contact );
+			$payment = new Paytrail_Module_Rest_Payment_E1( $order_number, $urlset, $contact );
 		
 			/* Adding one or more product rows to the payment. */
 			foreach( $purchase_data['cart_details'] as $item ) {
@@ -176,14 +176,14 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 					$item['price'],                                // product price (/apiece)
 					$paytrail_tax_rate,                            // Tax percentage
 					"0.00",                                        // Discount percentage
-					Verkkomaksut_Module_Rest_Product::TYPE_NORMAL  // Product type			
+					Paytrail_Module_Rest_Product::TYPE_NORMAL      // Product type			
 				);
 			}
 			
 		} else {
 		
 			/* Payment creation without address and product info. */
-			$payment = new Verkkomaksut_Module_Rest_Payment_S1( $order_number, $urlset, $price );			
+			$payment = new Paytrail_Module_Rest_Payment_S1( $order_number, $urlset, $price );			
 		
 		}
 
@@ -191,11 +191,11 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 		$payment->setLocale( edd_paytrail_locale() );
 
 		/* Sending payment to Paytrail service and handling possible errors. */
-		$module = new Verkkomaksut_Module_Rest( $paytrail_merchant_id, $paytrail_merchant_secret );
+		$module = new Paytrail_Module_Rest( $paytrail_merchant_id, $paytrail_merchant_secret );
 		try {
 			$result = $module->processPayment( $payment );	
 		}
-		catch( Verkkomaksut_Exception $e ) {
+		catch( Paytrail_Exception $e ) {
 			// processing the error
 			// Error description available $e->getMessage()
 			edd_set_error( 'authorize_error', __( 'We could not create your payment to Paytrail. Please try again.', 'edd-paytrail' ) );
@@ -236,10 +236,10 @@ function edd_paytrail_confirm_payment() {
 	if ( isset( $_GET['confirm_payment_id'] ) && is_page( $edd_options['success_page'] ) ) {
 	
 		/* Load the paytrail module payment file. */
-		require_once( EDD_PAYTRAIL_INCLUDES . 'Verkkomaksut_Module_Rest.php' );
+		require_once( EDD_PAYTRAIL_INCLUDES . 'Paytrail_Module_Rest.php' );
 	
 		/* Check id from payment. */
-		$module = new Verkkomaksut_Module_Rest( $paytrail_merchant_id, $paytrail_merchant_secret );
+		$module = new Paytrail_Module_Rest( $paytrail_merchant_id, $paytrail_merchant_secret );
 	
 		if( $module->confirmPayment( $_GET['ORDER_NUMBER'], $_GET['TIMESTAMP'], $_GET['PAID'], $_GET['METHOD'], $_GET['RETURN_AUTHCODE'] ) ) {
 			
