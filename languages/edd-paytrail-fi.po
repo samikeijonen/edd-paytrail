@@ -2,17 +2,17 @@
 # This file is distributed under the same license as the EDD Paytrail Gateway package.
 msgid ""
 msgstr ""
-"Project-Id-Version: EDD Paytrail Gateway 1.0\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/edd-paytrail\n"
+"Project-Id-Version: EDD Paytrail Gateway 1.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/edd-paytrail\n"
 "POT-Creation-Date: 2014-09-28 12:35:37+00:00\n"
-"PO-Revision-Date: 2014-09-28 15:36+0200\n"
+"PO-Revision-Date: 2014-11-20 20:48+0200\n"
 "Last-Translator: Sami Keijonen <sami.keijonen@foxnet.fi>\n"
 "Language-Team: Foxnet <sami.keijonen@foxnet.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.9\n"
+"X-Generator: Poedit 1.6.10\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: includes/address-info.php:26
@@ -115,21 +115,6 @@ msgid "You can use Paytrail account or finnish banks."
 msgstr ""
 "Voit käyttää maksaessasi Paytrail-tiliä tai suomalaisia verkkopankkeja."
 
-#: includes/image-info.php:52
-msgctxt "Alt tag for Paytrail image"
-msgid "Paytrail"
-msgstr "Paytrail"
-
-#: includes/image-info.php:52
-msgctxt "Title tag for Paytrail image"
-msgid "Paytrail"
-msgstr "Paytrail"
-
-#: includes/settings.php:35
-msgctxt "Paytrail settings in Gateways page"
-msgid "Paytrail Settings"
-msgstr "Paytrail asetukset"
-
 #: includes/settings.php:36
 msgid "Configure the Paytrail settings"
 msgstr "Muokkaa Paytrailin asetuksia"
@@ -172,11 +157,6 @@ msgstr "Testikauppiasvarmenne"
 msgid "Enter your Paytrail test Merchant Secret."
 msgstr "Kirjoita Paytrailin testikauppiasvarmenne."
 
-#: includes/settings.php:87
-msgctxt "Paytrail settings in Extensions page"
-msgid "Paytrail Settings"
-msgstr "Paytrail asetukset"
-
 #: includes/settings.php:94
 msgid "Show Paytrail image"
 msgstr "Näytä Paytrail-kuva"
@@ -217,3 +197,23 @@ msgstr "Sami Keijonen"
 #. Author URI of the plugin/theme
 msgid "https://foxland.fi"
 msgstr "https://foxland.fi"
+
+#: includes/image-info.php:52
+msgctxt "Alt tag for Paytrail image"
+msgid "Paytrail"
+msgstr "Paytrail"
+
+#: includes/image-info.php:52
+msgctxt "Title tag for Paytrail image"
+msgid "Paytrail"
+msgstr "Paytrail"
+
+#: includes/settings.php:35
+msgctxt "Paytrail settings in Gateways page"
+msgid "Paytrail Settings"
+msgstr "Paytrail asetukset"
+
+#: includes/settings.php:87
+msgctxt "Paytrail settings in Extensions page"
+msgid "Paytrail Settings"
+msgstr "Paytrail asetukset"
