@@ -198,7 +198,8 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 		catch( Paytrail_Exception $e ) {
 			// processing the error
 			// Error description available $e->getMessage()
-			edd_set_error( 'authorize_error', __( 'We could not create your payment to Paytrail. Please try again.', 'edd-paytrail' ) );
+			$edd_paytrail_error_message = $e->getMessage();
+			edd_set_error( 'authorize_error', sprintf( __( 'We could not create your payment to Paytrail. Please try again. Here is error message: %s', 'edd-paytrail' ), '<strong>' . esc_attr( $edd_paytrail_error_message ) . '</strong>' ) );
 			edd_send_back_to_checkout( '?payment-mode=' . $purchase_data['post_data']['edd-gateway'] );
 		}
 		
