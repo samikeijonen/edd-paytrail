@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: EDD Paytrail Gateway 1.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/edd-paytrail\n"
 "POT-Creation-Date: 2014-09-28 12:35:37+00:00\n"
-"PO-Revision-Date: 2014-11-20 20:48+0200\n"
+"PO-Revision-Date: 2014-11-22 19:02+0200\n"
 "Last-Translator: Sami Keijonen <sami.keijonen@foxnet.fi>\n"
 "Language-Team: Foxnet <sami.keijonen@foxnet.fi>\n"
 "Language: fi\n"
@@ -89,21 +89,23 @@ msgstr ""
 "Paytrail hyväksyy vain eurot maksun yhteydessä. Ota yhteys sivun "
 "ylläpitäjään."
 
-#: includes/functions.php:201
-msgid "We could not create your payment to Paytrail. Please try again."
+#: includes/functions.php:202
+msgid ""
+"We could not create your payment to Paytrail. Please try again. Here is "
+"error message: %s"
 msgstr ""
 "Emme onnistuneet luomaan maksua Paytrail-maksulle. Ole hyvä ja kokeile "
-"uudelleen."
+"uudelleen. Tässä virheilmoitus: %s"
 
-#: includes/functions.php:250
+#: includes/functions.php:251
 msgid "Paytrail order number: %s"
 msgstr "Paytrail tilausnumero: %s"
 
-#: includes/functions.php:257
+#: includes/functions.php:258
 msgid "There was possible payment fraud attempt."
 msgstr "Joku yritti mahdollisesti huijata."
 
-#: includes/functions.php:285
+#: includes/functions.php:286
 msgid ""
 "Note: You need to use EUR currency for Paytrail to work. Go to %ssettings%s."
 msgstr ""

@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the EDD Paytrail Gateway package.
 msgid ""
 msgstr ""
-"Project-Id-Version: EDD Paytrail Gateway 1.1\n"
+"Project-Id-Version: EDD Paytrail Gateway 1.1.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/edd-paytrail\n"
 "POT-Creation-Date: 2014-09-28 12:35:37+00:00\n"
 "MIME-Version: 1.0\n"
@@ -85,19 +85,21 @@ msgstr ""
 msgid "Paytrail only accepts EUR as currency. Contact the site admin."
 msgstr ""
 
-#: includes/functions.php:201
-msgid "We could not create your payment to Paytrail. Please try again."
+#: includes/functions.php:202
+msgid ""
+"We could not create your payment to Paytrail. Please try again. Here is "
+"error message: %s"
 msgstr ""
 
-#: includes/functions.php:250
+#: includes/functions.php:251
 msgid "Paytrail order number: %s"
 msgstr ""
 
-#: includes/functions.php:257
+#: includes/functions.php:258
 msgid "There was possible payment fraud attempt."
 msgstr ""
 
-#: includes/functions.php:285
+#: includes/functions.php:286
 msgid "Note: You need to use EUR currency for Paytrail to work. Go to %ssettings%s."
 msgstr ""
 
