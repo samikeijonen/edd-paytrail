@@ -28,6 +28,14 @@ I needed this feature and someone else might need it too.
 
 == Changelog ==
 
+= 1.1.1 =
+
+* Add Paytrail error message if something goes wrong.
+
+= 1.1 =
+
+* Update Verkkomaksut_Module_Rest to Paytrail_Module_Rest.
+
 = 1.0.4 =
 
 * Update plugin URL to foxland.fi.
