@@ -3,7 +3,7 @@
 * Plugin Name: EDD Paytrail Gateway
 * Plugin URI: https://foxland.fi/downloads/paytrail-payment-gateway/
 * Description: Adds Paytrail payment gateway to Easy Digital Downloads plugin 
-* Version: 1.1.1
+* Version: 1.1.2
 * Author: Sami Keijonen
 * Author URI: https://foxland.fi
 * Text Domain: edd-paytrail
@@ -17,7 +17,7 @@
 * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 *
 * @package EDD Paytrail Gateway
-* @version 1.1.1
+* @version 1.1.2
 * @author Sami Keijonen <sami.keijonen@foxnet.fi>
 * @copyright Copyright (c) 2014, Sami Keijonen
 * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -80,7 +80,7 @@ final class EDD_PAYTRAIL {
 		
 		/* Define Plugin Version. */
 		if ( ! defined( 'EDD_PAYTRAIL_VERSION' ) ) {
-			define( 'EDD_PAYTRAIL_VERSION', '1.1.1' );
+			define( 'EDD_PAYTRAIL_VERSION', '1.1.2' );
 		}
 
 		/* For Licensing. */
