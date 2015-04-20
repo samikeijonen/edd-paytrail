@@ -90,7 +90,7 @@ function edd_paytrail_process_paytrail_payment( $purchase_data ) {
 
 		/* An object is created to model all payment return urls. */
 		$urlset = new Paytrail_Module_Rest_Urlset(
-			add_query_arg( 'confirm_payment_id', $payment_record, edd_get_success_page_uri() ), // return url for successful payment
+			esc_url( add_query_arg( 'confirm_payment_id', $payment_record, edd_get_success_page_uri() ) ), // return url for successful payment
 			edd_get_failed_transaction_uri(),                                                   // return url for failed payment
 			edd_get_success_page_uri(),                                                         // url for payment confirmation from SV server
 			""                                                                                  // pending url is not in use
