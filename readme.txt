@@ -3,8 +3,8 @@ Contributors: sami.keijonen
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E65RCFVD3QGYU
 Tags: EDD, download, downloads, add-on, digital, checkout, paytrail
 Requires at least: 3.9
-Tested up to: 4.2
-Stable tag: 1.1.2
+Tested up to: 4.2.2
+Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,10 @@ that first. It enables Paytrail gateaway in your shop.
 I needed this feature and someone else might need it too.
 
 == Changelog ==
+
+= 1.1.3 =
+
+* Fix: Update version number in the updater also.
 
 = 1.1.2 =
 
