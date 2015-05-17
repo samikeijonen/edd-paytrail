@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the EDD Paytrail Gateway package.
 msgid ""
 msgstr ""
-"Project-Id-Version: EDD Paytrail Gateway 1.1.2\n"
+"Project-Id-Version: EDD Paytrail Gateway 1.1.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/edd-paytrail\n"
 "POT-Creation-Date: 2014-09-28 12:35:37+00:00\n"
 "MIME-Version: 1.0\n"
