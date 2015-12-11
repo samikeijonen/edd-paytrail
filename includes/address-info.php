@@ -11,7 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @return      void
  */
 function edd_paytrail_address_fields() {
-
+	
+	if ( 'paytrail' != edd_get_chosen_gateway() ) {
+		return;
+	}
+	
 	$logged_in = is_user_logged_in();
 
 	if( $logged_in ) {
@@ -86,7 +90,7 @@ function edd_paytrail_address_fields() {
 	
 }
 /* Show finnish type of address fields if paytrail is chosen payment gateway and site owner wants to use these address fields. */
-if ( 'paytrail' == edd_get_chosen_gateway() && edd_paytrail_show_extra_address_fields() ) {
+if ( true === edd_paytrail_show_extra_address_fields() ) {
 	remove_action( 'edd_purchase_form_after_cc_form', 'edd_checkout_tax_fields', 999 ); // Remove original address fields.
 	add_action( 'edd_purchase_form_after_cc_form', 'edd_paytrail_address_fields', 999 ); // Add own address fields.
 }
@@ -102,7 +106,7 @@ add_action( 'edd_paytrail_cc_form', '__return_false' ); // Remove credit card in
 function edd_paytrail_required_fields( $required_fields ) {
 
 	/* If paytrail is chosen payment gateway and use finnish address field, remove card_state. And add last name. */
-	if ( 'paytrail' == edd_get_chosen_gateway() && edd_paytrail_show_extra_address_fields() ) {
+	if ( 'paytrail' == edd_get_chosen_gateway() && true === edd_paytrail_show_extra_address_fields() ) {
 		
 		/* Unset card_state from required fields. */
 		unset( $required_fields['card_state'] );
@@ -135,7 +139,7 @@ add_filter( 'edd_purchase_form_required_fields', 'edd_paytrail_required_fields' 
 function edd_paytrail_require_address_fields( $required_address_fields ) {
 
 	/* If paytrail is chosen payment gateway and use finnish address field, all address fields are required. */
-	if ( 'paytrail' == edd_get_chosen_gateway() && edd_paytrail_show_extra_address_fields() ) {
+	if ( 'paytrail' == edd_get_chosen_gateway() && true === edd_paytrail_show_extra_address_fields() ) {
 		return ( $required_address_fields ) || edd_paytrail_show_extra_address_fields();
 	} else {
 		return $required_address_fields;

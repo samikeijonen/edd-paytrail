@@ -11,10 +11,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @return      boolean
  */
 function edd_paytrail_show_extra_address_fields() {
-
-	global $edd_options;
 	
-	return isset( $edd_options['edd_paytrail_show_address_fields'] );
+	$edd_paytrail_show_address_fields = edd_get_option( 'edd_paytrail_show_address_fields' );
+	
+	if( $edd_paytrail_show_address_fields ) {
+		return true;
+	} else {
+		return false;
+	}
 	
 }
 
