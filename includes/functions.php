@@ -28,7 +28,7 @@ add_filter( 'edd_payment_gateways', 'edd_paytrail_register_gateway' );
  * @return      void
  */
 function edd_paytrail_process_paytrail_payment( $purchase_data ) {
-
+	
 	global $edd_options;
 	
 	/* Use test credentials if test mode is on. */
