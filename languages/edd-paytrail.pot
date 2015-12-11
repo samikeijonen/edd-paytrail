@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the EDD Paytrail Gateway package.
 msgid ""
 msgstr ""
-"Project-Id-Version: EDD Paytrail Gateway 1.1.3\n"
+"Project-Id-Version: EDD Paytrail Gateway 1.1.4\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/edd-paytrail\n"
 "POT-Creation-Date: 2014-09-28 12:35:37+00:00\n"
 "MIME-Version: 1.0\n"
@@ -13,59 +13,59 @@ msgstr ""
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 0.5.0\n"
 
-#: includes/address-info.php:26
+#: includes/address-info.php:30
 msgid "Billing Details"
 msgstr ""
 
-#: includes/address-info.php:30
+#: includes/address-info.php:34
 msgid "Billing Address"
 msgstr ""
 
-#: includes/address-info.php:35
+#: includes/address-info.php:39
 msgid "This is your billing address."
 msgstr ""
 
-#: includes/address-info.php:36
+#: includes/address-info.php:40
 msgid "Address line"
 msgstr ""
 
-#: includes/address-info.php:40
+#: includes/address-info.php:44
 msgid "Billing Zip / Postal Code"
 msgstr ""
 
-#: includes/address-info.php:45
+#: includes/address-info.php:49
 msgid "The zip or postal code for your billing address."
 msgstr ""
 
-#: includes/address-info.php:46
+#: includes/address-info.php:50
 msgid "Zip / Postal code"
 msgstr ""
 
-#: includes/address-info.php:50
+#: includes/address-info.php:54
 msgid "Billing City"
 msgstr ""
 
-#: includes/address-info.php:55
+#: includes/address-info.php:59
 msgid "The city for your billing address."
 msgstr ""
 
-#: includes/address-info.php:56
+#: includes/address-info.php:60
 msgid "City"
 msgstr ""
 
-#: includes/address-info.php:60
+#: includes/address-info.php:64
 msgid "Billing Country"
 msgstr ""
 
-#: includes/address-info.php:65
+#: includes/address-info.php:69
 msgid "The country for your billing address."
 msgstr ""
 
-#: includes/address-info.php:113
+#: includes/address-info.php:117
 msgid "Please enter your last name."
 msgstr ""
 
-#: includes/address-info.php:117
+#: includes/address-info.php:121
 msgid "Please enter your address."
 msgstr ""
 
@@ -107,57 +107,57 @@ msgstr ""
 msgid "You can use Paytrail account or finnish banks."
 msgstr ""
 
-#: includes/settings.php:36
+#: includes/settings.php:40
 msgid "Configure the Paytrail settings"
 msgstr ""
 
-#: includes/settings.php:41
+#: includes/settings.php:45
 msgid "Merchant ID"
 msgstr ""
 
-#: includes/settings.php:42
+#: includes/settings.php:46
 msgid "Enter your Paytrail Merchant ID. This is needed in order to take payment."
 msgstr ""
 
-#: includes/settings.php:48
+#: includes/settings.php:52
 msgid "Merchant Secret"
 msgstr ""
 
-#: includes/settings.php:49
+#: includes/settings.php:53
 msgid ""
 "Enter your Paytrail Merchant Secret. This is needed in order to take "
 "payment."
 msgstr ""
 
-#: includes/settings.php:55
+#: includes/settings.php:59
 msgid "Test Merchant ID"
 msgstr ""
 
-#: includes/settings.php:56
+#: includes/settings.php:60
 msgid "Enter your Paytrail test Merchant ID."
 msgstr ""
 
-#: includes/settings.php:62
+#: includes/settings.php:66
 msgid "Test Merchant Secret"
 msgstr ""
 
-#: includes/settings.php:63
+#: includes/settings.php:67
 msgid "Enter your Paytrail test Merchant Secret."
 msgstr ""
 
-#: includes/settings.php:94
+#: includes/settings.php:98
 msgid "Show Paytrail image"
 msgstr ""
 
-#: includes/settings.php:95
+#: includes/settings.php:99
 msgid "Check this if you want to show Paytrail image on checkout page."
 msgstr ""
 
-#: includes/settings.php:100
+#: includes/settings.php:104
 msgid "Finnish address fields"
 msgstr ""
 
-#: includes/settings.php:101
+#: includes/settings.php:105
 msgid ""
 "Check this if you want to show address fields like in Finland on checkout "
 "page. Address and product info is also send to Paytrail account in this "
@@ -194,12 +194,12 @@ msgctxt "Title tag for Paytrail image"
 msgid "Paytrail"
 msgstr ""
 
-#: includes/settings.php:35
+#: includes/settings.php:39
 msgctxt "Paytrail settings in Gateways page"
 msgid "Paytrail Settings"
 msgstr ""
 
-#: includes/settings.php:87
+#: includes/settings.php:91
 msgctxt "Paytrail settings in Extensions page"
 msgid "Paytrail Settings"
 msgstr ""
