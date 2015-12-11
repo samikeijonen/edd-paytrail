@@ -28,6 +28,10 @@ I needed this feature and someone else might need it too.
 
 == Changelog ==
 
+= 1.1.4 December 11, 2015 =
+
+Change the logic behind Finnish address check.
+
 = 1.1.3 =
 
 * Fix: Update version number in the updater also.
