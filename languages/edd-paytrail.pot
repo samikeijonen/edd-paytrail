@@ -1,14 +1,14 @@
-# Copyright (C) 2015 Sami Keijonen
+# Copyright (C) 2016 Sami Keijonen
 # This file is distributed under the same license as the EDD Paytrail Gateway package.
 msgid ""
 msgstr ""
-"Project-Id-Version: EDD Paytrail Gateway 1.1.4\n"
+"Project-Id-Version: EDD Paytrail Gateway 1.1.5\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/edd-paytrail\n"
 "POT-Creation-Date: 2014-09-28 12:35:37+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 0.5.0\n"
@@ -69,7 +69,7 @@ msgstr ""
 msgid "Please enter your address."
 msgstr ""
 
-#: includes/functions.php:16
+#: includes/functions.php:16 includes/settings.php:34 includes/settings.php:49
 msgid "Paytrail"
 msgstr ""
 
@@ -107,57 +107,57 @@ msgstr ""
 msgid "You can use Paytrail account or finnish banks."
 msgstr ""
 
-#: includes/settings.php:40
+#: includes/settings.php:69
 msgid "Configure the Paytrail settings"
 msgstr ""
 
-#: includes/settings.php:45
+#: includes/settings.php:74
 msgid "Merchant ID"
 msgstr ""
 
-#: includes/settings.php:46
+#: includes/settings.php:75
 msgid "Enter your Paytrail Merchant ID. This is needed in order to take payment."
 msgstr ""
 
-#: includes/settings.php:52
+#: includes/settings.php:81
 msgid "Merchant Secret"
 msgstr ""
 
-#: includes/settings.php:53
+#: includes/settings.php:82
 msgid ""
 "Enter your Paytrail Merchant Secret. This is needed in order to take "
 "payment."
 msgstr ""
 
-#: includes/settings.php:59
+#: includes/settings.php:88
 msgid "Test Merchant ID"
 msgstr ""
 
-#: includes/settings.php:60
+#: includes/settings.php:89
 msgid "Enter your Paytrail test Merchant ID."
 msgstr ""
 
-#: includes/settings.php:66
+#: includes/settings.php:95
 msgid "Test Merchant Secret"
 msgstr ""
 
-#: includes/settings.php:67
+#: includes/settings.php:96
 msgid "Enter your Paytrail test Merchant Secret."
 msgstr ""
 
-#: includes/settings.php:98
+#: includes/settings.php:133
 msgid "Show Paytrail image"
 msgstr ""
 
-#: includes/settings.php:99
+#: includes/settings.php:134
 msgid "Check this if you want to show Paytrail image on checkout page."
 msgstr ""
 
-#: includes/settings.php:104
+#: includes/settings.php:139
 msgid "Finnish address fields"
 msgstr ""
 
-#: includes/settings.php:105
+#: includes/settings.php:140
 msgid ""
 "Check this if you want to show address fields like in Finland on checkout "
 "page. Address and product info is also send to Paytrail account in this "
@@ -181,7 +181,7 @@ msgid "Sami Keijonen"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "https://foxland.fi"
+msgid "https://foxland.fi/"
 msgstr ""
 
 #: includes/image-info.php:52
@@ -194,12 +194,12 @@ msgctxt "Title tag for Paytrail image"
 msgid "Paytrail"
 msgstr ""
 
-#: includes/settings.php:39
+#: includes/settings.php:68
 msgctxt "Paytrail settings in Gateways page"
 msgid "Paytrail Settings"
 msgstr ""
 
-#: includes/settings.php:91
+#: includes/settings.php:126
 msgctxt "Paytrail settings in Extensions page"
 msgid "Paytrail Settings"
 msgstr ""
