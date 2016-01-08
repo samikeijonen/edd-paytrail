@@ -23,6 +23,36 @@ function edd_paytrail_show_extra_address_fields() {
 }
 
 /**
+ * Add section for gateways
+ *
+ * @since       1.1.5
+ * @param       array $sections The existing EDD sections array
+ * @return      array The modified EDD sections array
+ */
+function edd_paytrail_gateways_sections( $sections ) {
+				
+	$sections['edd-paytrail-gateway']  = esc_html__( 'Paytrail', 'edd-paytrail' );
+	return $sections;
+				
+}
+add_filter( 'edd_settings_sections_gateways', 'edd_paytrail_gateways_sections' );
+
+/**
+ * Add section for settings
+ *
+ * @since       1.1.5
+ * @param       array $sections The existing EDD sections array
+ * @return      array The modified EDD sections array
+ */
+function edd_paytrail_settings_sections( $sections ) {
+				
+	$sections['edd-paytrail-settings'] = esc_html__( 'Paytrail', 'edd-paytrail' );
+	return $sections;
+				
+}
+add_filter( 'edd_settings_sections_extensions', 'edd_paytrail_settings_sections' );
+
+/**
  * Register the paytrail.fi gateway settings
  *
  * @access      public
@@ -30,45 +60,50 @@ function edd_paytrail_show_extra_address_fields() {
  * @param 		$settings array the existing plugin settings
  * @return      array
  */
-
 function edd_paytrail_gateways_settings( $settings ) {
 
 	$paytrail_settings = array(
 		array(
 			'id'   => 'edd_paytrail_settings',
-			'name' => '<strong>' . _x( 'Paytrail Settings', 'Paytrail settings in Gateways page', 'edd-paytrail' ) . '</strong>',
-			'desc' => __( 'Configure the Paytrail settings', 'edd-paytrail' ),
+			'name' => '<strong>' . esc_html_x( 'Paytrail Settings', 'Paytrail settings in Gateways page', 'edd-paytrail' ) . '</strong>',
+			'desc' => esc_html__( 'Configure the Paytrail settings', 'edd-paytrail' ),
 			'type' => 'header'
 		),
 		array(
 			'id'   => 'edd_paytrail_merchant_id',
-			'name' => __( 'Merchant ID', 'edd-paytrail' ),
-			'desc' => __( 'Enter your Paytrail Merchant ID. This is needed in order to take payment.', 'edd-paytrail' ),
+			'name' => esc_html__( 'Merchant ID', 'edd-paytrail' ),
+			'desc' => esc_html__( 'Enter your Paytrail Merchant ID. This is needed in order to take payment.', 'edd-paytrail' ),
 			'type' => 'text',
 			'size' => 'regular'
 		),
 		array(
 			'id'   => 'edd_paytrail_merchant_secret',
-			'name' => __( 'Merchant Secret', 'edd-paytrail' ),
-			'desc' => __( 'Enter your Paytrail Merchant Secret. This is needed in order to take payment.', 'edd-paytrail' ),
+			'name' => esc_html__( 'Merchant Secret', 'edd-paytrail' ),
+			'desc' => esc_html__( 'Enter your Paytrail Merchant Secret. This is needed in order to take payment.', 'edd-paytrail' ),
 			'type' => 'text',
 			'size' => 'regular'
 		),
 		array(
 			'id'   => 'edd_paytrail_test_merchant_id',
-			'name' => __( 'Test Merchant ID', 'edd-paytrail' ),
-			'desc' => __( 'Enter your Paytrail test Merchant ID.', 'edd-paytrail' ),
+			'name' => esc_html__( 'Test Merchant ID', 'edd-paytrail' ),
+			'desc' => esc_html__( 'Enter your Paytrail test Merchant ID.', 'edd-paytrail' ),
 			'type' => 'text',
 			'size' => 'regular'
 		),
 		array(
 			'id'   => 'edd_paytrail_test_merchant_secret',
-			'name' => __( 'Test Merchant Secret', 'edd-paytrail' ),
-			'desc' => __( 'Enter your Paytrail test Merchant Secret.', 'edd-paytrail' ),
+			'name' => esc_html__( 'Test Merchant Secret', 'edd-paytrail' ),
+			'desc' => esc_html__( 'Enter your Paytrail test Merchant Secret.', 'edd-paytrail' ),
 			'type' => 'text',
 			'size' => 'regular'
 		)
 	);
+	
+	// If EDD is at version 2.5 or later use section for settings.
+	if ( version_compare( EDD_VERSION, 2.5, '>=' ) ) {
+		// Use the previously noted array key as an array key again and next your settings
+		$paytrail_settings = array( 'edd-paytrail-gateway' => $paytrail_settings );
+	}
 
 	return array_merge( $settings, $paytrail_settings );
 
@@ -88,24 +123,30 @@ function edd_paytrail_extensions_settings( $settings ) {
 	$extensions_settings = array(
 		array(
 			'id'   => 'edd_paytrail_header',
-			'name' => '<strong>' . _x( 'Paytrail Settings', 'Paytrail settings in Extensions page', 'edd-paytrail' ) . '</strong>',
+			'name' => '<strong>' . esc_html_x( 'Paytrail Settings', 'Paytrail settings in Extensions page', 'edd-paytrail' ) . '</strong>',
 			'desc' => '',
 			'type' => 'header',
 			'size' => 'regular'
 		),
 		array(
 			'id'   => 'edd_paytrail_show_image',
-			'name' => __( 'Show Paytrail image', 'edd-paytrail' ),
-			'desc' => __( 'Check this if you want to show Paytrail image on checkout page.', 'edd-paytrail' ),
+			'name' => esc_html__( 'Show Paytrail image', 'edd-paytrail' ),
+			'desc' => esc_html__( 'Check this if you want to show Paytrail image on checkout page.', 'edd-paytrail' ),
 			'type' => 'checkbox'
 		),
 		array(
 			'id'   => 'edd_paytrail_show_address_fields',
-			'name' => __( 'Finnish address fields', 'edd-paytrail' ),
-			'desc' => __( 'Check this if you want to show address fields like in Finland on checkout page. Address and product info is also send to Paytrail account in this case.', 'edd-paytrail' ),
+			'name' => esc_html__( 'Finnish address fields', 'edd-paytrail' ),
+			'desc' => esc_html__( 'Check this if you want to show address fields like in Finland on checkout page. Address and product info is also send to Paytrail account in this case.', 'edd-paytrail' ),
 			'type' => 'checkbox'
 		)
 	);
+	
+	// If EDD is at version 2.5 or later use section for settings.
+	if ( version_compare( EDD_VERSION, 2.5, '>=' ) ) {
+		// Use the previously noted array key as an array key again and next your settings
+		$extensions_settings = array( 'edd-paytrail-settings' => $extensions_settings );
+	}
 
 	return array_merge( $settings, $extensions_settings );
 

@@ -28,9 +28,13 @@ I needed this feature and someone else might need it too.
 
 == Changelog ==
 
+= Version 1.1.5 - January 8, 2016
+
+* Use new section area in EDD settings and gateways.
+
 = 1.1.4 December 11, 2015 =
 
-Change the logic behind Finnish address check.
+* Change the logic behind Finnish address check.
 
 = 1.1.3 =
 
