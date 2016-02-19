@@ -13,59 +13,59 @@ msgstr ""
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 0.5.0\n"
 
-#: includes/address-info.php:30
+#: includes/address-info.php:49
 msgid "Billing Details"
 msgstr ""
 
-#: includes/address-info.php:34
+#: includes/address-info.php:53
 msgid "Billing Address"
 msgstr ""
 
-#: includes/address-info.php:39
+#: includes/address-info.php:58
 msgid "This is your billing address."
 msgstr ""
 
-#: includes/address-info.php:40
+#: includes/address-info.php:59
 msgid "Address line"
 msgstr ""
 
-#: includes/address-info.php:44
+#: includes/address-info.php:63
 msgid "Billing Zip / Postal Code"
 msgstr ""
 
-#: includes/address-info.php:49
+#: includes/address-info.php:68
 msgid "The zip or postal code for your billing address."
 msgstr ""
 
-#: includes/address-info.php:50
+#: includes/address-info.php:69
 msgid "Zip / Postal code"
 msgstr ""
 
-#: includes/address-info.php:54
+#: includes/address-info.php:73
 msgid "Billing City"
 msgstr ""
 
-#: includes/address-info.php:59
+#: includes/address-info.php:78
 msgid "The city for your billing address."
 msgstr ""
 
-#: includes/address-info.php:60
+#: includes/address-info.php:79
 msgid "City"
 msgstr ""
 
-#: includes/address-info.php:64
+#: includes/address-info.php:83
 msgid "Billing Country"
 msgstr ""
 
-#: includes/address-info.php:69
+#: includes/address-info.php:88
 msgid "The country for your billing address."
 msgstr ""
 
-#: includes/address-info.php:117
+#: includes/address-info.php:136
 msgid "Please enter your last name."
 msgstr ""
 
-#: includes/address-info.php:121
+#: includes/address-info.php:140
 msgid "Please enter your address."
 msgstr ""
 
